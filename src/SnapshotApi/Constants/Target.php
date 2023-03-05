@@ -11,9 +11,8 @@ class Target
     public const TAGS = 'tags';
     public const TAGS_EXACT = 'tagsExact';
 
-    public const ALL = [
-        self::TITLE,
-        self::DESCRIPTION,
-        self::TAGS
-    ];
+    public const ALL = '' .
+            self::TITLE . ',' .
+            self::DESCRIPTION . ',' .
+            self::TAGS;
 }
