@@ -11,15 +11,9 @@ class Target
     public const TAGS = 'tags';
     public const TAGS_EXACT = 'tagsExact';
 
-    /**
-     * @return array<string>
-     */
-    public static function all(): array
-    {
-        return [
-            self::TITLE,
-            self::DESCRIPTION,
-            self::TAGS
-        ];
-    }
+    public const ALL = [
+        self::TITLE,
+        self::DESCRIPTION,
+        self::TAGS
+    ];
 }

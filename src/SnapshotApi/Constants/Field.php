@@ -24,29 +24,23 @@ class Field
     public const TAGS = 'tags';
     public const GENRE = 'genre';
 
-    /**
-     * @return array<string>
-     */
-    public static function all(): array
-    {
-        return [
-            self::CONTENT_ID,
-            self::TITLE,
-            self::DESCRIPTION,
-            self::USER_ID,
-            self::CHANNEL_ID,
-            self::VIEW_COUNTER,
-            self::MYLIST_COUNTER,
-            self::LIKE_COUNTER,
-            self::LENGTH_SECONDS,
-            self::THUMBNAIL_URL,
-            self::START_TIME,
-            self::LAST_RES_BODY,
-            self::COMMENT_COUNTER,
-            self::LAST_COMMENT_TIME,
-            self::CATEGORY_TAGS,
-            self::TAGS,
-            self::GENRE,
-        ];
-    }
+    public const ALL = [
+        self::CONTENT_ID,
+        self::TITLE,
+        self::DESCRIPTION,
+        self::USER_ID,
+        self::CHANNEL_ID,
+        self::VIEW_COUNTER,
+        self::MYLIST_COUNTER,
+        self::LIKE_COUNTER,
+        self::LENGTH_SECONDS,
+        self::THUMBNAIL_URL,
+        self::START_TIME,
+        self::LAST_RES_BODY,
+        self::COMMENT_COUNTER,
+        self::LAST_COMMENT_TIME,
+        self::CATEGORY_TAGS,
+        self::TAGS,
+        self::GENRE,
+    ];
 }

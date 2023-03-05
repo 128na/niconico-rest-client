@@ -15,8 +15,8 @@ class Query
      */
     protected array $options = [
         'q' => null,
-        'targets' => Target::TITLE,
-        'fields' => Field::TITLE,
+        'targets' => Target::ALL,
+        'fields' => Field::ALL,
         'filters' => null,
         'jsonFilter' => null,
         '_sort' => Sort::VIEW_COUNTER_DESC,

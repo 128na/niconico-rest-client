@@ -64,7 +64,7 @@ interface Video
     public function getEmbeddable(): ?bool;
 
     /**
-     * 再生にログイン必須
+     * ニコ生で再生禁止
      */
     public function getNoLivePlay(): ?bool;
 

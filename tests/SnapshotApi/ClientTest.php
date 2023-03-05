@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Tests\SnapshotApi;
 
 use NicoNicoApi\SnapshotApi\Client;
-use NicoNicoApi\SnapshotApi\Constants\Field;
-use NicoNicoApi\SnapshotApi\Constants\Target;
 use NicoNicoApi\SnapshotApi\Query;
 use NicoNicoApi\SnapshotApi\Video;
 use PHPUnit\Framework\TestCase;
@@ -27,8 +25,6 @@ class ClientTest extends TestCase
     public function test()
     {
         $q = new Query(['q' => 'test']);
-        $q->setTargets(Target::all());
-        $q->setFields(Field::all());
         $response = $this->getSUT()->list($q);
 
         $this->assertEquals(200, $response->getResponse()->getStatusCode());
