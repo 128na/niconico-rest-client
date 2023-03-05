@@ -1,0 +1,30 @@
+{
+  "name": "128na/niconico-api",
+  "type": "library",
+  "require": {
+    "symfony/http-client": "^6.2.7"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.0.13",
+    "mockery/mockery": "^1.5.1",
+    "phpstan/phpstan": "^1.10.3",
+    "friendsofphp/php-cs-fixer": "^3.14"
+  },
+  "scripts": {
+    "cs": "@php vendor/bin/php-cs-fixer fix src",
+    "stan": "@php vendor/bin/phpstan analyze -l 6 src",
+    "test": "@php vendor/bin/phpunit tests"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "NicoNicoApi\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "128na",
+      "email": "simutrans.128na@gmail.com"
+    }
+  ]
+}
