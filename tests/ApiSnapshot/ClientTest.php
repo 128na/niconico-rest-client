@@ -12,7 +12,6 @@ use NicoNicoRestClient\ApiSnapshot\Client;
 use NicoNicoRestClient\ApiSnapshot\Query;
 use NicoNicoRestClient\ApiSnapshot\Video;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 

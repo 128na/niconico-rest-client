@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace NicoNicoRestClient\ApiExt;
 
 use NicoNicoRestClient\Base\XmlResult;
+use NicoNicoRestClient\Contracts\Result as ContractsResult;
 use NicoNicoRestClient\Contracts\SingleVideoResult;
 
-class Result extends XmlResult implements SingleVideoResult
+class Result extends XmlResult implements SingleVideoResult, ContractsResult
 {
     public function getVideo(): Video
     {

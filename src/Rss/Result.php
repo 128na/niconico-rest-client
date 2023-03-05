@@ -6,8 +6,9 @@ namespace NicoNicoRestClient\Rss;
 
 use NicoNicoRestClient\Base\XmlResult;
 use NicoNicoRestClient\Contracts\MultipleVideosResult;
+use NicoNicoRestClient\Contracts\Result as ContractsResult;
 
-class Result extends XmlResult implements MultipleVideosResult
+class Result extends XmlResult implements MultipleVideosResult, ContractsResult
 {
     public function getVideos(): array
     {

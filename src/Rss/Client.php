@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace NicoNicoRestClient\Rss;
 
 use NicoNicoRestClient\Base\Client as BaseClient;
-use NicoNicoRestClient\Exceptions\Exception;
 
 class Client extends BaseClient
 {
@@ -21,14 +20,9 @@ class Client extends BaseClient
             $page
         );
         $response = $this->httpClient->request('GET', $url);
-        if ($response->getStatusCode() !== 200) {
-            throw new Exception(sprintf('"%s" returns status code %d.', $url, $response->getStatusCode()));
-        }
-
+        $this->validateResponse($response);
         $result = new Result($response);
-        if (!$result->statusOk()) {
-            throw new Exception($result->getErrorMessage());
-        }
+        $this->validateResult($result);
 
         return $result;
     }
@@ -44,14 +38,9 @@ class Client extends BaseClient
             $page
         );
         $response = $this->httpClient->request('GET', $url);
-        if ($response->getStatusCode() !== 200) {
-            throw new Exception(sprintf('"%s" returns status code %d.', $url, $response->getStatusCode()));
-        }
-
+        $this->validateResponse($response);
         $result = new Result($response);
-        if (!$result->statusOk()) {
-            throw new Exception($result->getErrorMessage());
-        }
+        $this->validateResult($result);
 
         return $result;
     }
@@ -66,14 +55,9 @@ class Client extends BaseClient
             $page
         );
         $response = $this->httpClient->request('GET', $url);
-        if ($response->getStatusCode() !== 200) {
-            throw new Exception(sprintf('"%s" returns status code %d.', $url, $response->getStatusCode()));
-        }
-
+        $this->validateResponse($response);
         $result = new Result($response);
-        if (!$result->statusOk()) {
-            throw new Exception($result->getErrorMessage());
-        }
+        $this->validateResult($result);
 
         return $result;
     }

@@ -6,8 +6,9 @@ namespace NicoNicoRestClient\ApiSnapshot;
 
 use NicoNicoRestClient\Base\JsonResult;
 use NicoNicoRestClient\Contracts\MultipleVideosResult;
+use NicoNicoRestClient\Contracts\Result as ContractsResult;
 
-class Result extends JsonResult implements MultipleVideosResult
+class Result extends JsonResult implements MultipleVideosResult, ContractsResult
 {
     /**
      * @return array<Video>

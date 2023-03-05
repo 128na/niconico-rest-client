@@ -6,8 +6,9 @@ namespace NicoNicoRestClient\ApiFl;
 
 use NicoNicoRestClient\Base\XmlResult;
 use NicoNicoRestClient\Contracts\MultipleVideosResult;
+use NicoNicoRestClient\Contracts\Result as ContractsResult;
 
-class Result extends XmlResult implements MultipleVideosResult
+class Result extends XmlResult implements MultipleVideosResult, ContractsResult
 {
     public function getVideos(): array
     {
@@ -18,9 +19,6 @@ class Result extends XmlResult implements MultipleVideosResult
         return array_map(fn ($item) => new Video($item), $items);
     }
 
-    /**
-     * 失敗時はfailになる
-     */
     public function statusOk(): bool
     {
         return $this->body['@attributes']['status'] === 'ok';

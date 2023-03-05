@@ -22,14 +22,9 @@ class Client extends BaseClient
             $videoId
         );
         $response = $this->httpClient->request('GET', $url);
-        if ($response->getStatusCode() !== 200) {
-            throw new Exception(sprintf('"%s" returns status code %d.', $url, $response->getStatusCode()));
-        }
-
+        $this->validateResponse($response);
         $result = new Result($response);
-        if (!$result->statusOk()) {
-            throw new Exception($result->getErrorMessage());
-        }
+        $this->validateResult($result);
 
         return $result;
     }
