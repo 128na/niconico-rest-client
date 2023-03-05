@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NicoNicoRestClient\SnapshotApi;
+namespace NicoNicoRestClient\ApiSnapshot;
 
 use DateTimeImmutable;
 use DateTimeInterface;

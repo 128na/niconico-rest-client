@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NicoNicoRestClient\FlApi;
+namespace NicoNicoRestClient\ApiFl;
 
 use NicoNicoRestClient\Base\XmlResult;
 use NicoNicoRestClient\Contracts\MultipleVideosResult;

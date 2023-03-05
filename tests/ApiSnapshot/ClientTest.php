@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Tests\SnapshotApi;
+namespace Tests\ApiSnapshot;
 
 use DateTimeImmutable;
 use DateTimeInterface;
 use Mockery;
 use Mockery\MockInterface;
-use NicoNicoRestClient\SnapshotApi\Client;
-use NicoNicoRestClient\SnapshotApi\Query;
-use NicoNicoRestClient\SnapshotApi\Video;
+use NicoNicoRestClient\ApiSnapshot\Client;
+use NicoNicoRestClient\ApiSnapshot\Query;
+use NicoNicoRestClient\ApiSnapshot\Video;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Contracts\HttpClient\HttpClientInterface;

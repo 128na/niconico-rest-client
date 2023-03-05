@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace NicoNicoRestClient\SnapshotApi;
+namespace NicoNicoRestClient\ApiSnapshot;
 
-use NicoNicoRestClient\SnapshotApi\Constants\Field;
-use NicoNicoRestClient\SnapshotApi\Constants\Sort;
-use NicoNicoRestClient\SnapshotApi\Constants\Target;
+use NicoNicoRestClient\ApiSnapshot\Constants\Field;
+use NicoNicoRestClient\ApiSnapshot\Constants\Sort;
+use NicoNicoRestClient\ApiSnapshot\Constants\Target;
 
 class Query
 {

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Tests\FlApi;
+namespace Tests\ApiFl;
 
 use DateTimeImmutable;
 use DateTimeInterface;
-use NicoNicoRestClient\FlApi\Client;
-use NicoNicoRestClient\FlApi\Video;
+use NicoNicoRestClient\ApiFl\Client;
+use NicoNicoRestClient\ApiFl\Video;
 use PHPUnit\Framework\TestCase;
 use Mockery;
 use Mockery\MockInterface;
@@ -52,7 +52,7 @@ class ClientTest extends TestCase
     {
         $m = Mockery::mock(HttpClientInterface::class, function (MockInterface $m) {
             $m->shouldReceive('request')->withArgs([
-                'GET', 'https://flapi.nicovideo.jp/api/getrelation?video=sm0'
+                'GET', 'https://ApiFl.nicovideo.jp/api/getrelation?video=sm0'
             ])->andReturn(Mockery::mock(ResponseInterface::class, function (MockInterface $m) {
                 $m->allows('getStatusCode')->andReturn(200);
                 $m->allows('getContent')->andReturn(self::MOCK_XML);

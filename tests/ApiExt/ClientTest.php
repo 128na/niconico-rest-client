@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Tests\ExtApi;
+namespace Tests\ApiExt;
 
 use DateTimeImmutable;
 use DateTimeInterface;
 use Mockery;
 use Mockery\MockInterface;
-use NicoNicoRestClient\ExtApi\Client;
-use NicoNicoRestClient\ExtApi\Video;
+use NicoNicoRestClient\ApiExt\Client;
+use NicoNicoRestClient\ApiExt\Video;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;

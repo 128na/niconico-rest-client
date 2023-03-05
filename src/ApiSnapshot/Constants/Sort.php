@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NicoNicoRestClient\SnapshotApi\Constants;
+namespace NicoNicoRestClient\ApiSnapshot\Constants;
 
 class Sort
 {

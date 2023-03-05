@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NicoNicoRestClient\SnapshotApi\Constants;
+namespace NicoNicoRestClient\ApiSnapshot\Constants;
 
 class Target
 {
@@ -12,7 +12,7 @@ class Target
     public const TAGS_EXACT = 'tagsExact';
 
     public const ALL = '' .
-            self::TITLE . ',' .
-            self::DESCRIPTION . ',' .
-            self::TAGS;
+        self::TITLE . ',' .
+        self::DESCRIPTION . ',' .
+        self::TAGS;
 }

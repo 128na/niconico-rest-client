@@ -2,24 +2,24 @@
 
 declare(strict_types=1);
 
-namespace NicoNicoRestClient\SnapshotApi;
+namespace NicoNicoRestClient\ApiFl;
 
-use Exception;
 use NicoNicoRestClient\Base\Client as BaseClient;
+use NicoNicoRestClient\Exceptions\Exception;
 
 class Client extends BaseClient
 {
-    protected string $endpoint = 'https://api.search.nicovideo.jp/api/v2/snapshot/video/contents/search';
+    protected string $endpoint = 'https://ApiFl.nicovideo.jp/api/getrelation';
 
     /**
-     * @link https://site.nicovideo.jp/search-api-docs/snapshot.html
+     * @link https://dic.nicovideo.jp/a/%E3%83%8B%E3%82%B3%E3%83%8B%E3%82%B3%E5%8B%95%E7%94%BBapi
      */
-    public function list(Query $query): Result
+    public function list(string $videoId): Result
     {
         $url = sprintf(
-            '%s?%s',
+            '%s?video=%s',
             $this->getEndpoint(),
-            $query->toQueryString()
+            $videoId
         );
         $response = $this->httpClient->request('GET', $url);
         if ($response->getStatusCode() !== 200) {
@@ -30,6 +30,7 @@ class Client extends BaseClient
         if (!$result->statusOk()) {
             throw new Exception($result->getErrorMessage());
         }
+
         return $result;
     }
 }

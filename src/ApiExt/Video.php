@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NicoNicoRestClient\ExtApi;
+namespace NicoNicoRestClient\ApiExt;
 
 use DateTimeImmutable;
 use DateTimeInterface;

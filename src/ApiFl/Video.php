@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NicoNicoRestClient\FlApi;
+namespace NicoNicoRestClient\ApiFl;
 
 use DateTimeImmutable;
 use NicoNicoRestClient\Base\Video as BaseVideo;
