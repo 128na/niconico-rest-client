@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace NicoNicoApi\FlApi;
 
 use DateTimeImmutable;
-use DateTimeInterface;
 use NicoNicoApi\Base\Video as BaseVideo;
 use NicoNicoApi\Helper\Functions;
 

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace NicoNicoApi\Base;
 
 use NicoNicoApi\Helper\Functions;
-use SimpleXMLElement;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
 abstract class XmlResult
