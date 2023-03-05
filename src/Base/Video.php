@@ -46,32 +46,7 @@ abstract class Video implements ContractsVideo
         return null;
     }
 
-    public function getUserNickname(): ?string
-    {
-        return null;
-    }
-
-    public function getUserIconUrl(): ?string
-    {
-        return null;
-    }
-
     public function getThumbnailUrl(): ?string
-    {
-        return null;
-    }
-
-    public function getThumbType(): ?string
-    {
-        return null;
-    }
-
-    public function getEmbeddable(): ?bool
-    {
-        return null;
-    }
-
-    public function getNoLivePlay(): ?bool
     {
         return null;
     }
@@ -87,21 +62,6 @@ abstract class Video implements ContractsVideo
     }
 
     public function getLengthSeconds(): ?int
-    {
-        return null;
-    }
-
-    public function getMovieType(): ?string
-    {
-        return null;
-    }
-
-    public function getSizeHigh(): ?int
-    {
-        return null;
-    }
-
-    public function getSizeLow(): ?int
     {
         return null;
     }
@@ -136,22 +96,12 @@ abstract class Video implements ContractsVideo
         return null;
     }
 
-    public function getTagsString(): ?string
-    {
-        return null;
-    }
-
-    public function getTagsArray(): array
+    public function getTags(): array
     {
         return [];
     }
 
-    public function getCategoryTagsString(): ?string
-    {
-        return null;
-    }
-
-    public function getCategoryTagsArray(): array
+    public function getCategoryTags(): array
     {
         return [];
     }

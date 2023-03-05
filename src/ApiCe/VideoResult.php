@@ -6,12 +6,13 @@ namespace NicoNicoRestClient\ApiCe;
 
 use NicoNicoRestClient\Base\JsonResult;
 use NicoNicoRestClient\Contracts\Result;
+use NicoNicoRestClient\Contracts\SingleVideoResult;
 
-class UserResult extends JsonResult implements Result
+class VideoResult extends JsonResult implements SingleVideoResult, Result
 {
-    public function getUser(): User
+    public function getVideo(): Video
     {
-        return new User($this->getBody()['niconico_response']);
+        return new Video($this->getBody()['niconico_response']);
     }
 
     public function statusOk(): bool

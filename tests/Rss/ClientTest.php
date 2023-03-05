@@ -113,31 +113,22 @@ class ClientTest extends TestCase
         $this->assertEquals('https://www.nicovideo.jp/watch/sm0?ref=rss_myvideo_atom', $video->getWatchUrl());
         $this->assertEquals('dummy title', $video->getTitle());
         $this->assertEquals('dummy html', $video->getDescription());
-        $this->assertEquals('<p>dummy html</p>', $video->getDescriptionHtml());
         $this->assertEquals(null, $video->getUserId());
-        $this->assertEquals(null, $video->getUserNickname());
-        $this->assertEquals(null, $video->getUserIconUrl());
         $this->assertEquals('https://nicovideo.cdn.nimg.jp/thumbnails/0/0.0', $video->getThumbnailUrl());
-        $this->assertEquals(null, $video->getThumbType());
-        $this->assertEquals(null, $video->getEmbeddable());
-        $this->assertEquals(null, $video->getNoLivePlay());
         $this->assertEquals(DateTimeImmutable::createFromFormat(DateTimeInterface::ATOM, '2000-01-02T03:04:05+09:00'), $video->getStartTime());
         $this->assertEquals(null, $video->getLengthString());
         $this->assertEquals(null, $video->getLengthSeconds());
-        $this->assertEquals(null, $video->getMovieType());
-        $this->assertEquals(null, $video->getSizeHigh());
-        $this->assertEquals(null, $video->getSizeLow());
         $this->assertEquals(null, $video->getViewCounter());
         $this->assertEquals(null, $video->getCommentCounter());
         $this->assertEquals(null, $video->getMylistCounter());
         $this->assertEquals(null, $video->getLikeCounter());
         $this->assertEquals(null, $video->getLastCommentTime());
         $this->assertEquals(null, $video->getLastResBody());
-        $this->assertEquals(null, $video->getTagsString());
-        $this->assertEquals([], $video->getTagsArray());
-        $this->assertEquals(null, $video->getCategoryTagsString());
-        $this->assertEquals([], $video->getCategoryTagsArray());
+        $this->assertEquals([], $video->getTags());
+        $this->assertEquals([], $video->getCategoryTags());
         $this->assertEquals(null, $video->getGenre());
         $this->assertEquals(null, $video->getChannelId());
+        //  extra fields
+        $this->assertEquals('<p>dummy html</p>', $video->getDescriptionHtml());
     }
 }

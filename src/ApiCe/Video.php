@@ -11,120 +11,83 @@ use NicoNicoRestClient\Helper\Functions;
 
 class Video extends BaseVideo
 {
-    public function getContentId(): ?string
+    public function getContentId(): string
     {
-        return $this->item['contentId'] ?? null;
+        return $this->item['video']['id'];
     }
 
-    public function getWatchUrl(): ?string
+    public function getWatchUrl(): string
     {
-        return $this->getContentId()
-            ? sprintf('https://www.nicovideo.jp/watch/%s', $this->getContentId())
-            : null;
+        return Functions::getWatchUrlFromContentId($this->getContentId());
     }
 
-    public function getTitle(): ?string
+    public function getTitle(): string
     {
-        return $this->item['title'] ?? null;
+        return $this->item['video']['title'];
     }
 
-    public function getDescription(): ?string
+    public function getDescription(): string
     {
-        return $this->item['description'] ?? null;
+        return $this->item['video']['description'];
     }
 
-    public function getUserId(): ?int
+    public function getUserId(): int
     {
-        return $this->item['userId'] ?? null;
+        return (int)$this->item['video']['user_id'];
     }
 
-    public function getThumbnailUrl(): ?string
+    public function getThumbnailUrl(): string
     {
-        return $this->item['thumbnailUrl'] ?? null;
+        return $this->item['video']['thumbnail_url'];
     }
 
-    public function getStartTime(): ?DateTimeImmutable
+    public function getStartTime(): DateTimeImmutable
     {
-        $str = $this->item['startTime'] ?? null;
-        return $str
-            ? DateTimeImmutable::createFromFormat(DateTimeInterface::ATOM, $str)
-            : null;
+        return DateTimeImmutable::createFromFormat(DateTimeInterface::ATOM, $this->item['video']['first_retrieve']);
     }
 
-    public function getLengthString(): ?string
+    public function getLengthString(): string
     {
-        return is_null($this->getLengthSeconds())
-            ? null
-            : Functions::secondsToTimeString($this->getLengthSeconds());
+        return Functions::secondsToTimeString($this->getLengthSeconds());
     }
 
-    public function getLengthSeconds(): ?int
+    public function getLengthSeconds(): int
     {
-        return $this->item['lengthSeconds'] ?? null;
+        return (int)$this->item['video']['length_in_seconds'];
     }
 
-    public function getViewCounter(): ?int
+    public function getViewCounter(): int
     {
-        return $this->item['viewCounter'] ?? null;
+        return (int)$this->item['video']['view_counter'];
     }
 
-    public function getCommentCounter(): ?int
+    public function getCommentCounter(): int
     {
-        return $this->item['commentCounter'] ?? null;
+        return (int)$this->item['thread']['num_res'];
     }
 
-    public function getMylistCounter(): ?int
+    public function getMylistCounter(): int
     {
-        return $this->item['mylistCounter'] ?? null;
+        return (int)$this->item['video']['mylist_counter'];
     }
 
-    public function getLikeCounter(): ?int
+    public function getTags(): array
     {
-        return $this->item['likeCounter'] ?? null;
+        return array_map(fn ($t): string => $t['tag'], $this->item['tags']['tag_info']);
     }
 
-    public function getLastCommentTime(): ?DateTimeImmutable
+    public function getGenre(): string
     {
-        $str = $this->item['lastCommentTime'] ?? null;
-        return $str
-            ? DateTimeImmutable::createFromFormat(DateTimeInterface::ATOM, $str)
-            : null;
+        return $this->item['video']['genre']['label'];
     }
 
-    public function getLastResBody(): ?string
+    public function getDeleted(): bool
     {
-        return $this->item['lastResBody'] ?? null;
+        return (bool)$this->item['video']['deleted'];
     }
 
-    public function getTagsArray(): array
+    public function getCommunityId(): string
     {
-        return explode(' ', $this->item['tags'] ?? '');
-    }
-
-    public function getTagsString(): ?string
-    {
-        return $this->item['tags'] ?? null;
-    }
-
-    public function getCategoryTagsArray(): array
-    {
-        return explode(' ', $this->item['categoryTags'] ?? '');
-    }
-
-    public function getCategoryTagsString(): ?string
-    {
-        return $this->item['categoryTags'] ?? null;
-    }
-
-    public function getGenre(): ?string
-    {
-        return $this->item['genre'] ?? null;
-    }
-
-    public function getChannelId(): ?int
-    {
-        return isset($this->item['channelId'])
-            ? (int)$this->item['channelId']
-            : null;
+        return $this->item['video']['community_id'];
     }
 }

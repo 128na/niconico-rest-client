@@ -81,29 +81,28 @@ class ClientTest extends TestCase
         $this->assertEquals('dummy title', $video->getTitle());
         $this->assertEquals('dummy description', $video->getDescription());
         $this->assertEquals(999, $video->getUserId());
-        $this->assertEquals('dummy user name', $video->getUserNickname());
-        $this->assertEquals('https://example.com', $video->getUserIconUrl());
         $this->assertEquals('https://nicovideo.cdn.nimg.jp/thumbnails/0/0', $video->getThumbnailUrl());
-        $this->assertEquals('video', $video->getThumbType());
-        $this->assertEquals(true, $video->getEmbeddable());
-        $this->assertEquals(false, $video->getNoLivePlay());
         $this->assertEquals(DateTimeImmutable::createFromFormat(DateTimeInterface::ATOM, '2000-01-02T03:04:05+09:00'), $video->getStartTime());
         $this->assertEquals('1:00', $video->getLengthString());
         $this->assertEquals(60, $video->getLengthSeconds());
-        $this->assertEquals('flv', $video->getMovieType());
-        $this->assertEquals(20000, $video->getSizeHigh());
-        $this->assertEquals(10000, $video->getSizeLow());
         $this->assertEquals(111, $video->getViewCounter());
         $this->assertEquals(222, $video->getCommentCounter());
         $this->assertEquals(333, $video->getMylistCounter());
         $this->assertEquals(null, $video->getLikeCounter());
         $this->assertEquals(null, $video->getLastCommentTime());
         $this->assertEquals('dummy comment', $video->getLastResBody());
-        $this->assertEquals('lock_tag normal_tag', $video->getTagsString());
-        $this->assertEquals(['lock_tag', 'normal_tag'], $video->getTagsArray());
-        $this->assertEquals(null, $video->getCategoryTagsString());
-        $this->assertEquals([], $video->getCategoryTagsArray());
+        $this->assertEquals(['lock_tag', 'normal_tag'], $video->getTags());
+        $this->assertEquals([], $video->getCategoryTags());
         $this->assertEquals('未設定', $video->getGenre());
         $this->assertEquals(null, $video->getChannelId());
+        //  extra fields
+        $this->assertEquals('video', $video->getThumbType());
+        $this->assertEquals(true, $video->getEmbeddable());
+        $this->assertEquals(false, $video->getNoLivePlay());
+        $this->assertEquals('dummy user name', $video->getUserNickname());
+        $this->assertEquals('https://example.com', $video->getUserIconUrl());
+        $this->assertEquals('flv', $video->getMovieType());
+        $this->assertEquals(20000, $video->getSizeHigh());
+        $this->assertEquals(10000, $video->getSizeLow());
     }
 }

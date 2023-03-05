@@ -10,16 +10,16 @@ class User extends BaseUser
 {
     public function getId(): int
     {
-        return (int)$this->item['id'];
+        return (int)$this->item['user']['id'];
     }
 
     public function getNickname(): string
     {
-        return $this->item['nickname'];
+        return $this->item['user']['nickname'];
     }
 
     public function getThumbnailUrl(): string
     {
-        return $this->item['thumbnail_url'];
+        return $this->item['user']['thumbnail_url'];
     }
 }

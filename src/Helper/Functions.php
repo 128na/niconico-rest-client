@@ -35,6 +35,15 @@ class Functions
         return array_pop($seg);
     }
 
+    public static function getWatchUrlFromContentId(string $contentId): string
+    {
+        return sprintf(
+            '%s/%s',
+            'https://www.nicovideo.jp/watch',
+            $contentId
+        );
+    }
+
     /**
      * @link https://qiita.com/yasumodev/items/74a73ed4b3f1dd45edb8
      * @return array<mixed>

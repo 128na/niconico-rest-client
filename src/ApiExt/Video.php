@@ -116,12 +116,7 @@ class Video extends BaseVideo
         return $this->item['thumb']['last_res_body'];
     }
 
-    public function getTagsString(): string
-    {
-        return implode(' ', $this->getTagsArray());
-    }
-
-    public function getTagsArray(): array
+    public function getTags(): array
     {
         return $this->item['thumb']['tags']['tag'];
     }

@@ -39,34 +39,10 @@ interface Video
     public function getUserId(): ?int;
 
     /**
-     * ユーザー名
-     */
-    public function getUserNickname(): ?string;
-
-    /**
-     * ユーザーアイコンURL
-     */
-    public function getUserIconUrl(): ?string;
-
-    /**
      * サムネイルURL
      */
     public function getThumbnailUrl(): ?string;
 
-    /**
-     * サムネイル形式
-     */
-    public function getThumbType(): ?string;
-
-    /**
-     * 埋め込み可
-     */
-    public function getEmbeddable(): ?bool;
-
-    /**
-     * ニコ生で再生禁止
-     */
-    public function getNoLivePlay(): ?bool;
 
     /**
      * 投稿日時
@@ -83,20 +59,6 @@ interface Video
      */
     public function getLengthSeconds(): ?int;
 
-    /**
-     * 動画形式
-     */
-    public function getMovieType(): ?string;
-
-    /**
-     * 高画質容量
-     */
-    public function getSizeHigh(): ?int;
-
-    /**
-     * 低画質容量
-     */
-    public function getSizeLow(): ?int;
 
     /**
      * 再生数
@@ -132,23 +94,13 @@ interface Video
      * タグ一覧（配列）
      * @return array<string>
      */
-    public function getTagsArray(): array;
-
-    /**
-     * タグ一覧（スペース区切り文字列）
-     */
-    public function getTagsString(): ?string;
+    public function getTags(): array;
 
     /**
      * カテゴリタグ一覧（配列）
      * @return array<string>
      */
-    public function getCategoryTagsArray(): array;
-
-    /**
-     * カテゴリタグ一覧（スペース区切り文字列）
-     */
-    public function getCategoryTagsString(): ?string;
+    public function getCategoryTags(): array;
 
     /**
      * ジャンル名

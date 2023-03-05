@@ -96,24 +96,14 @@ class Video extends BaseVideo
         return $this->item['lastResBody'] ?? null;
     }
 
-    public function getTagsArray(): array
+    public function getTags(): array
     {
         return explode(' ', $this->item['tags'] ?? '');
     }
 
-    public function getTagsString(): ?string
-    {
-        return $this->item['tags'] ?? null;
-    }
-
-    public function getCategoryTagsArray(): array
+    public function getCategoryTags(): array
     {
         return explode(' ', $this->item['categoryTags'] ?? '');
-    }
-
-    public function getCategoryTagsString(): ?string
-    {
-        return $this->item['categoryTags'] ?? null;
     }
 
     public function getGenre(): ?string

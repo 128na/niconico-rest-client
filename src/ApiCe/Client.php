@@ -25,7 +25,20 @@ class Client extends BaseClient
         return $result;
     }
 
-    // public function videoInfo(string $videoId): VideoResult
+    public function videoInfo(string $videoId): VideoResult
+    {
+        $url = sprintf(
+            '%s/nicoapi/v1/video.info?__format=json&v=%s',
+            $this->getEndpoint(),
+            $videoId
+        );
+        $response = $this->httpClient->request('GET', $url);
+        $this->validateResponse($response);
+        $result = new VideoResult($response);
+        $this->validateResult($result);
+
+        return $result;
+    }
 
     /**
      * @param array<string> $videoIds

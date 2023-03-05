@@ -71,29 +71,20 @@ class ClientTest extends TestCase
         $this->assertEquals('dummy title', $video->getTitle());
         $this->assertEquals(null, $video->getDescription());
         $this->assertEquals(null, $video->getUserId());
-        $this->assertEquals(null, $video->getUserNickname());
-        $this->assertEquals(null, $video->getUserIconUrl());
         $this->assertEquals('https://nicovideo.cdn.nimg.jp/thumbnails/1/1', $video->getThumbnailUrl());
-        $this->assertEquals(null, $video->getThumbType());
-        $this->assertEquals(null, $video->getEmbeddable());
-        $this->assertEquals(null, $video->getNoLivePlay());
         $this->assertEquals(DateTimeImmutable::createFromFormat(DateTimeInterface::ATOM, '2000-01-02T03:04:05+09:00'), $video->getStartTime());
         $this->assertEquals('1:00', $video->getLengthString());
         $this->assertEquals(60, $video->getLengthSeconds());
-        $this->assertEquals(null, $video->getMovieType());
-        $this->assertEquals(null, $video->getSizeHigh());
-        $this->assertEquals(null, $video->getSizeLow());
         $this->assertEquals(111, $video->getViewCounter());
         $this->assertEquals(222, $video->getCommentCounter());
         $this->assertEquals(333, $video->getMylistCounter());
         $this->assertEquals(null, $video->getLikeCounter());
         $this->assertEquals(null, $video->getLastCommentTime());
         $this->assertEquals(null, $video->getLastResBody());
-        $this->assertEquals(null, $video->getTagsString());
-        $this->assertEquals([], $video->getTagsArray());
-        $this->assertEquals(null, $video->getCategoryTagsString());
-        $this->assertEquals([], $video->getCategoryTagsArray());
+        $this->assertEquals([], $video->getTags());
+        $this->assertEquals([], $video->getCategoryTags());
         $this->assertEquals(null, $video->getGenre());
         $this->assertEquals(null, $video->getChannelId());
+        //  extra fields
     }
 }
