@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NicoNicoApi\Helper;
+namespace NicoNicoRestClient\Helper;
 
 use SimpleXMLElement;
 

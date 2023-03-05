@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NicoNicoApi\Contracts;
+namespace NicoNicoRestClient\Contracts;
 
 use Symfony\Contracts\HttpClient\ResponseInterface;
 

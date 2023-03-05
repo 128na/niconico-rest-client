@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Tests\ExtApi;
 
-use NicoNicoApi\Helper\Functions;
+use NicoNicoRestClient\Helper\Functions;
 use PHPUnit\Framework\TestCase;
 
-use function NicoNicoApi\Helper\timeStringToSecond;
+use function NicoNicoRestClient\Helper\timeStringToSecond;
 
 class FunctionsTest extends TestCase
 {

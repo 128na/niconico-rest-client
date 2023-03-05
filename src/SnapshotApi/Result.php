@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace NicoNicoApi\SnapshotApi;
+namespace NicoNicoRestClient\SnapshotApi;
 
-use NicoNicoApi\Base\JsonResult;
-use NicoNicoApi\Contracts\MultipleVideosResult;
+use NicoNicoRestClient\Base\JsonResult;
+use NicoNicoRestClient\Contracts\MultipleVideosResult;
 
 class Result extends JsonResult implements MultipleVideosResult
 {

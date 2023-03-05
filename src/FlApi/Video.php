@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace NicoNicoApi\FlApi;
+namespace NicoNicoRestClient\FlApi;
 
 use DateTimeImmutable;
-use NicoNicoApi\Base\Video as BaseVideo;
-use NicoNicoApi\Helper\Functions;
+use NicoNicoRestClient\Base\Video as BaseVideo;
+use NicoNicoRestClient\Helper\Functions;
 
 class Video extends BaseVideo
 {

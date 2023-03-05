@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace NicoNicoApi\ExtApi;
+namespace NicoNicoRestClient\ExtApi;
 
-use NicoNicoApi\Base\Client as BaseClient;
-use NicoNicoApi\Exceptions\Exception;
+use NicoNicoRestClient\Base\Client as BaseClient;
+use NicoNicoRestClient\Exceptions\Exception;
 
 class Client extends BaseClient
 {

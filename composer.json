@@ -1,5 +1,5 @@
 {
-  "name": "128na/niconico-api",
+  "name": "128na/niconico-rest-client",
   "type": "library",
   "require": {
     "symfony/http-client": "^6.2.7"
@@ -18,7 +18,7 @@
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "NicoNicoApi\\": "src/"
+      "NicoNicoRestClient\\": "src/"
     }
   },
   "authors": [

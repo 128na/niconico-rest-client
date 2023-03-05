@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\SnapshotApi;
 
-use NicoNicoApi\SnapshotApi\Client;
-use NicoNicoApi\SnapshotApi\Query;
-use NicoNicoApi\SnapshotApi\Video;
+use NicoNicoRestClient\SnapshotApi\Client;
+use NicoNicoRestClient\SnapshotApi\Query;
+use NicoNicoRestClient\SnapshotApi\Video;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttpClient;
 

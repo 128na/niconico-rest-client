@@ -23,8 +23,8 @@
 # usage
 
 ```
-use NicoNicoApi\ClientFactory;
-use NicoNicoApi\SnapshotApi\Query;
+use NicoNicoRestClient\ClientFactory;
+use NicoNicoRestClient\SnapshotApi\Query;
 
 $client = ClientFactory::create(ClientFactory::SNAPSHOT_API);
 

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace NicoNicoApi\SnapshotApi;
+namespace NicoNicoRestClient\SnapshotApi;
 
-use NicoNicoApi\SnapshotApi\Constants\Field;
-use NicoNicoApi\SnapshotApi\Constants\Sort;
-use NicoNicoApi\SnapshotApi\Constants\Target;
+use NicoNicoRestClient\SnapshotApi\Constants\Field;
+use NicoNicoRestClient\SnapshotApi\Constants\Sort;
+use NicoNicoRestClient\SnapshotApi\Constants\Target;
 
 class Query
 {
@@ -22,7 +22,7 @@ class Query
         '_sort' => Sort::VIEW_COUNTER_DESC,
         '_offset' => 0,
         '_limit' => 10,
-        '_context' => 'NicoNicoApi',
+        '_context' => 'NicoNicoRestClient',
     ];
 
 

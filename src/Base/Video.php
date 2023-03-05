@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace NicoNicoApi\Base;
+namespace NicoNicoRestClient\Base;
 
 use DateTimeImmutable;
-use NicoNicoApi\Contracts\Video as ContractsVideo;
+use NicoNicoRestClient\Contracts\Video as ContractsVideo;
 
 abstract class Video implements ContractsVideo
 {

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Rss;
 
-use NicoNicoApi\Rss\Client;
-use NicoNicoApi\Rss\Video;
+use NicoNicoRestClient\Rss\Client;
+use NicoNicoRestClient\Rss\Video;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttpClient;
 

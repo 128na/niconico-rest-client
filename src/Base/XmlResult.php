@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace NicoNicoApi\Base;
+namespace NicoNicoRestClient\Base;
 
-use NicoNicoApi\Helper\Functions;
+use NicoNicoRestClient\Helper\Functions;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 
 abstract class XmlResult

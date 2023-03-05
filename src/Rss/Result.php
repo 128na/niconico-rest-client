@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace NicoNicoApi\Rss;
+namespace NicoNicoRestClient\Rss;
 
-use NicoNicoApi\Base\XmlResult;
-use NicoNicoApi\Contracts\MultipleVideosResult;
+use NicoNicoRestClient\Base\XmlResult;
+use NicoNicoRestClient\Contracts\MultipleVideosResult;
 
 class Result extends XmlResult implements MultipleVideosResult
 {

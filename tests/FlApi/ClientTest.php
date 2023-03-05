@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\FlApi;
 
-use NicoNicoApi\FlApi\Client;
-use NicoNicoApi\FlApi\Video;
+use NicoNicoRestClient\FlApi\Client;
+use NicoNicoRestClient\FlApi\Video;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\HttpClient\HttpClient;
 

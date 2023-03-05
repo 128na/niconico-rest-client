@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace NicoNicoApi\SnapshotApi\Constants;
+namespace NicoNicoRestClient\SnapshotApi\Constants;
 
 class Field
 {
