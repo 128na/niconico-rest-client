@@ -31,6 +31,8 @@ https://w.atwiki.jp/nicoapi/
     - `https://api.ce.nicovideo.jp/nicoapi/v1/mylist.list?__format=json&group_id=***&limit=50&from=0`
     - `https://api.ce.nicovideo.jp/nicoapi/v1/user.myvideo?__format=json&user_id=***`
 
+※group_id=mylist_id
+
 ### RSS feeds
 
 - Rss

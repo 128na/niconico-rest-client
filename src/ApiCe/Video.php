@@ -73,12 +73,16 @@ class Video extends BaseVideo
 
     public function getTags(): array
     {
-        return array_map(fn ($t): string => $t['tag'], $this->item['tags']['tag_info']);
+        return isset($this->item['tags']['tag_info'])
+            ? array_map(fn ($t): string => $t['tag'], $this->item['tags']['tag_info'])
+            : [];
     }
 
-    public function getGenre(): string
+    public function getGenre(): ?string
     {
-        return $this->item['video']['genre']['label'];
+        return isset($this->item['video']['genre']['label'])
+            ? $this->item['video']['genre']['label']
+            : null;
     }
 
     public function getDeleted(): bool

@@ -15,7 +15,7 @@ class Result extends JsonResult implements MultipleVideosResult, ContractsResult
      */
     public function getVideos(): array
     {
-        return array_map(fn ($item) => new Video($item), $this->getBody()['data'] ?? []);
+        return array_map(fn ($item) => new Video($item), $this->getBody()['data']);
     }
 
     /**
