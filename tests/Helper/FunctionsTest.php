@@ -7,8 +7,6 @@ namespace Tests\ExtApi;
 use NicoNicoRestClient\Helper\Functions;
 use PHPUnit\Framework\TestCase;
 
-use function NicoNicoRestClient\Helper\timeStringToSecond;
-
 class FunctionsTest extends TestCase
 {
     protected function setUp(): void
@@ -44,5 +42,14 @@ class FunctionsTest extends TestCase
             ['1:00:00', 3600],
             ['100:00:00', 360000],
         ];
+    }
+
+    /**
+     * @dataProvider dataValidFormat
+     */
+    public function testGetContentIdFromUrl(string $timeStr, int $seconds)
+    {
+        $actual = Functions::secondsToTimeString($seconds);
+        $this->assertEquals($timeStr, $actual, "$seconds => $timeStr");
     }
 }

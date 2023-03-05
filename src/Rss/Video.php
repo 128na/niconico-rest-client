@@ -33,7 +33,7 @@ class Video extends BaseVideo
 
     public function getDescriptionHtml(): ?string
     {
-        return $this->item['content'];
+        return trim($this->item['content']);
     }
 
     public function getThumbnailUrl(): ?string

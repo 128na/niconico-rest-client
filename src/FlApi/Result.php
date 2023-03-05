@@ -11,7 +11,11 @@ class Result extends XmlResult implements MultipleVideosResult
 {
     public function getVideos(): array
     {
-        return array_map(fn ($item) => new Video($item), $this->getBody()['video'] ?? []);
+        $items = is_array($this->getBody()['video'])
+            ? $this->getBody()['video']
+            : [$this->getBody()['video']];
+
+        return array_map(fn ($item) => new Video($item), $items);
     }
 
     /**

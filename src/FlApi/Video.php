@@ -32,7 +32,7 @@ class Video extends BaseVideo
 
     public function getStartTime(): ?DateTimeImmutable
     {
-        return (new  DateTimeImmutable())->setTimestamp($this->item['startTime']);
+        return (new  DateTimeImmutable())->setTimestamp((int)$this->item['time']);
     }
 
     public function getLengthString(): ?string

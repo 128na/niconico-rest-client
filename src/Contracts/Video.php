@@ -158,5 +158,5 @@ interface Video
     /**
      * チャンネルID
      */
-    public function getChannelId(): ?string;
+    public function getChannelId(): ?int;
 }

@@ -161,7 +161,7 @@ abstract class Video implements ContractsVideo
         return null;
     }
 
-    public function getChannelId(): ?string
+    public function getChannelId(): ?int
     {
         return null;
     }

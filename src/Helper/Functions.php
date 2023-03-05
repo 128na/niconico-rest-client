@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace NicoNicoRestClient\Helper;
 
-use SimpleXMLElement;
-
 class Functions
 {
     public static function timeStringToSeconds(string $timeStr): int

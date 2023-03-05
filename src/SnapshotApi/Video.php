@@ -121,8 +121,10 @@ class Video extends BaseVideo
         return $this->item['genre'] ?? null;
     }
 
-    public function getChannelId(): ?string
+    public function getChannelId(): ?int
     {
-        return $this->item['channelId'] ?? null;
+        return isset($this->item['channelId'])
+            ? (int)$this->item['channelId']
+            : null;
     }
 }
