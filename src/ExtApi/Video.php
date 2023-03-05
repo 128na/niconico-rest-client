@@ -11,112 +11,112 @@ use NicoNicoRestClient\Helper\Functions;
 
 class Video extends BaseVideo
 {
-    public function getContentId(): ?string
+    public function getContentId(): string
     {
         return $this->item['thumb']['video_id'];
     }
 
-    public function getWatchUrl(): ?string
+    public function getWatchUrl(): string
     {
         return $this->item['thumb']['watch_url'];
     }
 
-    public function getTitle(): ?string
+    public function getTitle(): string
     {
         return $this->item['thumb']['title'];
     }
 
-    public function getDescription(): ?string
+    public function getDescription(): string
     {
         return $this->item['thumb']['description'];
     }
 
-    public function getUserId(): ?int
+    public function getUserId(): int
     {
         return (int)$this->item['thumb']['user_id'];
     }
 
-    public function getUserNickname(): ?string
+    public function getUserNickname(): string
     {
         return $this->item['thumb']['user_nickname'];
     }
 
-    public function getUserIconUrl(): ?string
+    public function getUserIconUrl(): string
     {
         return $this->item['thumb']['user_icon_url'];
     }
 
-    public function getThumbnailUrl(): ?string
+    public function getThumbnailUrl(): string
     {
         return $this->item['thumb']['thumbnail_url'];
     }
 
-    public function getThumbType(): ?string
+    public function getThumbType(): string
     {
         return $this->item['thumb']['thumb_type'];
     }
 
-    public function getEmbeddable(): ?bool
+    public function getEmbeddable(): bool
     {
         return (bool)$this->item['thumb']['embeddable'];
     }
 
-    public function getNoLivePlay(): ?bool
+    public function getNoLivePlay(): bool
     {
         return (bool)$this->item['thumb']['no_live_play'];
     }
 
-    public function getStartTime(): ?DateTimeImmutable
+    public function getStartTime(): DateTimeImmutable
     {
         return DateTimeImmutable::createFromFormat(DateTimeInterface::ATOM, $this->item['thumb']['first_retrieve']);
     }
 
-    public function getLengthString(): ?string
+    public function getLengthString(): string
     {
         return $this->item['thumb']['length'];
     }
 
-    public function getLengthSeconds(): ?int
+    public function getLengthSeconds(): int
     {
         return Functions::timeStringToSeconds($this->getLengthString());
     }
 
-    public function getMovieType(): ?string
+    public function getMovieType(): string
     {
         return $this->item['thumb']['movie_type'];
     }
 
-    public function getSizeHigh(): ?int
+    public function getSizeHigh(): int
     {
         return (int)$this->item['thumb']['size_high'];
     }
 
-    public function getSizeLow(): ?int
+    public function getSizeLow(): int
     {
         return (int)$this->item['thumb']['size_low'];
     }
 
-    public function getViewCounter(): ?int
+    public function getViewCounter(): int
     {
         return (int)$this->item['thumb']['view_counter'];
     }
 
-    public function getCommentCounter(): ?int
+    public function getCommentCounter(): int
     {
         return (int)$this->item['thumb']['comment_num'];
     }
 
-    public function getMylistCounter(): ?int
+    public function getMylistCounter(): int
     {
         return (int)$this->item['thumb']['mylist_counter'];
     }
 
-    public function getLastResBody(): ?string
+    public function getLastResBody(): string
     {
         return $this->item['thumb']['last_res_body'];
     }
 
-    public function getTagsString(): ?string
+    public function getTagsString(): string
     {
         return implode(' ', $this->getTagsArray());
     }
@@ -126,7 +126,7 @@ class Video extends BaseVideo
         return $this->item['thumb']['tags']['tag'];
     }
 
-    public function getGenre(): ?string
+    public function getGenre(): string
     {
         return $this->item['thumb']['genre'];
     }

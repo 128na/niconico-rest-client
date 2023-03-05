@@ -13,7 +13,12 @@
   "scripts": {
     "cs": "@php vendor/bin/php-cs-fixer fix src",
     "stan": "@php vendor/bin/phpstan analyze -l 6 src",
-    "test": "@php vendor/bin/phpunit tests"
+    "test": "@php vendor/bin/phpunit tests",
+    "all": [
+      "@cs",
+      "@stan",
+      "@test"
+    ]
   },
   "license": "MIT",
   "autoload": {
