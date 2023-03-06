@@ -237,7 +237,6 @@ class ClientTest extends TestCase
         $this->assertEquals(null, $video->getLastCommentTime());
         $this->assertEquals(null, $video->getLastResBody());
         $this->assertEquals(['dummy_tag'], $video->getTags());
-        $this->assertEquals([], $video->getCategoryTags());
         $this->assertEquals('未設定', $video->getGenre());
         $this->assertEquals(null, $video->getChannelId());
         //  extra fields
@@ -279,7 +278,6 @@ class ClientTest extends TestCase
         $this->assertEquals(null, $video->getLastCommentTime());
         $this->assertEquals(null, $video->getLastResBody());
         $this->assertEquals([], $video->getTags());
-        $this->assertEquals([], $video->getCategoryTags());
         $this->assertEquals(null, $video->getGenre());
         $this->assertEquals(null, $video->getChannelId());
         //  extra fields
@@ -349,7 +347,6 @@ class ClientTest extends TestCase
         $this->assertEquals(null, $video->getLastCommentTime());
         $this->assertEquals(null, $video->getLastResBody());
         $this->assertEquals([], $video->getTags());
-        $this->assertEquals([], $video->getCategoryTags());
         $this->assertEquals(null, $video->getGenre());
         $this->assertEquals(null, $video->getChannelId());
         //  extra fields

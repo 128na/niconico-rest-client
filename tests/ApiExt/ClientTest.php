@@ -92,7 +92,6 @@ class ClientTest extends TestCase
         $this->assertEquals(null, $video->getLastCommentTime());
         $this->assertEquals('dummy comment', $video->getLastResBody());
         $this->assertEquals(['lock_tag', 'normal_tag'], $video->getTags());
-        $this->assertEquals([], $video->getCategoryTags());
         $this->assertEquals('未設定', $video->getGenre());
         $this->assertEquals(null, $video->getChannelId());
         //  extra fields

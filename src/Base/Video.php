@@ -101,11 +101,6 @@ abstract class Video implements ContractsVideo
         return [];
     }
 
-    public function getCategoryTags(): array
-    {
-        return [];
-    }
-
     public function getGenre(): ?string
     {
         return null;

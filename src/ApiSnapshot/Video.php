@@ -101,11 +101,6 @@ class Video extends BaseVideo
         return explode(' ', $this->item['tags'] ?? '');
     }
 
-    public function getCategoryTags(): array
-    {
-        return explode(' ', $this->item['categoryTags'] ?? '');
-    }
-
     public function getGenre(): ?string
     {
         return $this->item['genre'] ?? null;

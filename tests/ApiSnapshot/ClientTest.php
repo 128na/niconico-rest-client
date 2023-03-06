@@ -85,7 +85,6 @@ class ClientTest extends TestCase
         $this->assertEquals(DateTimeImmutable::createFromFormat(DateTimeInterface::ATOM, '2001-01-02T03:04:05+09:00'), $video->getLastCommentTime());
         $this->assertEquals('dummy comment', $video->getLastResBody());
         $this->assertEquals(['tag1', 'tag2'], $video->getTags());
-        $this->assertEquals(['cat_tag1', 'cat_tag2'], $video->getCategoryTags());
         $this->assertEquals('ジャンル１', $video->getGenre());
         $this->assertEquals(123, $video->getChannelId());
     }

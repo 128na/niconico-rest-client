@@ -125,7 +125,6 @@ class ClientTest extends TestCase
         $this->assertEquals(null, $video->getLastCommentTime());
         $this->assertEquals(null, $video->getLastResBody());
         $this->assertEquals([], $video->getTags());
-        $this->assertEquals([], $video->getCategoryTags());
         $this->assertEquals(null, $video->getGenre());
         $this->assertEquals(null, $video->getChannelId());
         //  extra fields

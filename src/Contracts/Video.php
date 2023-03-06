@@ -97,12 +97,6 @@ interface Video
     public function getTags(): array;
 
     /**
-     * カテゴリタグ一覧（配列）
-     * @return array<string>
-     */
-    public function getCategoryTags(): array;
-
-    /**
      * ジャンル名
      */
     public function getGenre(): ?string;
