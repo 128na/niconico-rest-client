@@ -4,20 +4,17 @@ declare(strict_types=1);
 
 namespace Tests\Rss;
 
-use DateTimeImmutable;
-use DateTimeInterface;
 use NicoNicoRestClient\Rss\Client;
 use NicoNicoRestClient\Rss\Video;
-use PHPUnit\Framework\TestCase;
 use Mockery;
 use Mockery\MockInterface;
-use NicoNicoRestClient\Rss\Result;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
+use Tests\VideoTestCase;
 
-class ClientTest extends TestCase
+class ClientTest extends VideoTestCase
 {
-    private const MOCK_XML = '<?xml version="1.0" encoding="utf-8"?>
+    private const MOCK = '<?xml version="1.0" encoding="utf-8"?>
     <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ja" xmlns:media="http://search.yahoo.com/mrss/">
       <title>dummy rss title</title>
       <subtitle>dummy rss subtitle</subtitle>
@@ -37,7 +34,7 @@ class ClientTest extends TestCase
         <published>2000-01-02T03:04:05+09:00</published>
         <updated>2000-01-02T03:04:05+09:00</updated>
         <content type="html"><![CDATA[
-            <p>dummy html</p>
+            <p>dummy description</p>
         ]]></content>
         <media:title>dummy title</media:title>
         <media:thumbnail url="https://nicovideo.cdn.nimg.jp/thumbnails/0/0.0"/>
@@ -45,6 +42,19 @@ class ClientTest extends TestCase
       <entry>
       </entry>
       </feed>';
+
+    protected ?string $expectWatchUrl = 'https://www.nicovideo.jp/watch/sm0?ref=rss_myvideo_atom';
+    protected ?string $expectThumbnailUrl = 'https://nicovideo.cdn.nimg.jp/thumbnails/0/0.0';
+    protected ?string $expectLengthString = null;
+    protected ?int $expectLengthSeconds = null;
+    protected ?int $expectViewCounter = null;
+    protected ?int $expectCommentCounter = null;
+    protected ?int $expectMylistCounter = null;
+    protected ?int $expectLikeCounter = null;
+    protected ?string $expectLastCommentTime = null;
+    protected ?string $expectLastResBody = null;
+    protected array $expectTags = [];
+    protected ?string $expectGenre = null;
 
     protected function setUp(): void
     {
@@ -63,12 +73,20 @@ class ClientTest extends TestCase
                 'GET', 'https://www.nicovideo.jp/user/1/video?rss=atom&page=1'
             ])->andReturn(Mockery::mock(ResponseInterface::class, function (MockInterface $m) {
                 $m->allows('getStatusCode')->andReturn(200);
-                $m->allows('getContent')->andReturn(self::MOCK_XML);
+                $m->allows('getContent')->andReturn(self::MOCK);
             }));
         });
 
         $result = $this->getSUT($m)->user(1);
-        $this->assertResult($result);
+        $this->assertEquals(200, $result->getResponse()->getStatusCode());
+
+        /** @var Video */
+        $video = $result->getVideos()[0];
+        $this->assertInstanceOf(Video::class, $video);
+
+        $this->assertCommonFields($video);
+
+        $this->assertExtraFields($video);
     }
 
     public function testUserMylist()
@@ -78,12 +96,20 @@ class ClientTest extends TestCase
                 'GET', 'https://www.nicovideo.jp/user/1/mylist/2?rss=atom&page=1'
             ])->andReturn(Mockery::mock(ResponseInterface::class, function (MockInterface $m) {
                 $m->allows('getStatusCode')->andReturn(200);
-                $m->allows('getContent')->andReturn(self::MOCK_XML);
+                $m->allows('getContent')->andReturn(self::MOCK);
             }));
         });
 
         $result = $this->getSUT($m)->userMylist(1, 2);
-        $this->assertResult($result);
+        $this->assertEquals(200, $result->getResponse()->getStatusCode());
+
+        /** @var Video */
+        $video = $result->getVideos()[0];
+        $this->assertInstanceOf(Video::class, $video);
+
+        $this->assertCommonFields($video);
+
+        $this->assertExtraFields($video);
     }
 
     public function testMylist()
@@ -93,41 +119,24 @@ class ClientTest extends TestCase
                 'GET', 'https://www.nicovideo.jp/mylist/2?rss=atom&page=1'
             ])->andReturn(Mockery::mock(ResponseInterface::class, function (MockInterface $m) {
                 $m->allows('getStatusCode')->andReturn(200);
-                $m->allows('getContent')->andReturn(self::MOCK_XML);
+                $m->allows('getContent')->andReturn(self::MOCK);
             }));
         });
 
         $result = $this->getSUT($m)->mylist(2);
-        $this->assertResult($result);
-    }
-
-    private function assertResult(Result $result): void
-    {
         $this->assertEquals(200, $result->getResponse()->getStatusCode());
 
         /** @var Video */
         $video = $result->getVideos()[0];
         $this->assertInstanceOf(Video::class, $video);
 
-        $this->assertEquals('sm0', $video->getContentId());
-        $this->assertEquals('https://www.nicovideo.jp/watch/sm0?ref=rss_myvideo_atom', $video->getWatchUrl());
-        $this->assertEquals('dummy title', $video->getTitle());
-        $this->assertEquals('dummy html', $video->getDescription());
-        $this->assertEquals(null, $video->getUserId());
-        $this->assertEquals('https://nicovideo.cdn.nimg.jp/thumbnails/0/0.0', $video->getThumbnailUrl());
-        $this->assertEquals(DateTimeImmutable::createFromFormat(DateTimeInterface::ATOM, '2000-01-02T03:04:05+09:00'), $video->getStartTime());
-        $this->assertEquals(null, $video->getLengthString());
-        $this->assertEquals(null, $video->getLengthSeconds());
-        $this->assertEquals(null, $video->getViewCounter());
-        $this->assertEquals(null, $video->getCommentCounter());
-        $this->assertEquals(null, $video->getMylistCounter());
-        $this->assertEquals(null, $video->getLikeCounter());
-        $this->assertEquals(null, $video->getLastCommentTime());
-        $this->assertEquals(null, $video->getLastResBody());
-        $this->assertEquals([], $video->getTags());
-        $this->assertEquals(null, $video->getGenre());
-        $this->assertEquals(null, $video->getChannelId());
-        //  extra fields
-        $this->assertEquals('<p>dummy html</p>', $video->getDescriptionHtml());
+        $this->assertCommonFields($video);
+
+        $this->assertExtraFields($video);
+    }
+
+    private function assertExtraFields(Video $video): void
+    {
+        $this->assertEquals('<p>dummy description</p>', $video->getDescriptionHtml());
     }
 }
