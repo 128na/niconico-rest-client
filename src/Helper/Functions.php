@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace NicoNicoRestClient\Helper;
 
+use DOMElement;
+use DOMNode;
+use DOMText;
+
 class Functions
 {
     public static function timeStringToSeconds(string $timeStr): int
@@ -55,5 +59,30 @@ class Functions
         $objXml = simplexml_load_string($xml, null, LIBXML_NOCDATA);
         $json = json_encode($objXml, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         return json_decode(preg_replace('/\\\\\//', '/', $json), true);
+    }
+
+    /**
+     * @link https://stackoverflow.com/questions/23062537/how-to-convert-html-to-json-using-php
+     * @return array<mixed>
+     */
+    public static function elementToArray(DOMElement|DOMNode $element): array
+    {
+        $data = ['tag' => $element->nodeName];
+        foreach ($element->attributes as $attribute) {
+            $data[$attribute->name] = trim($attribute->value);
+        }
+        foreach ($element->childNodes as $subElement) {
+            if ($subElement instanceof DOMText) {
+                $data["html"] = trim($subElement->wholeText);
+            } else {
+                $data["children"][] = self::elementToArray($subElement);
+            }
+        }
+        return $data;
+    }
+
+    public static function getChannelId(string $channel): int
+    {
+        return (int)str_replace('ch', '', $channel);
     }
 }

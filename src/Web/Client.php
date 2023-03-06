@@ -2,24 +2,20 @@
 
 declare(strict_types=1);
 
-namespace NicoNicoRestClient\ApiFl;
+namespace NicoNicoRestClient\Web;
 
 use NicoNicoRestClient\Base\Client as BaseClient;
-use NicoNicoRestClient\Exceptions\Exception;
 
 class Client extends BaseClient
 {
-    protected string $endpoint = 'https://ApiFl.nicovideo.jp/api/getrelation';
+    protected string $endpoint = 'https://sp.nicovideo.jp';
 
-    /**
-     * @link https://dic.nicovideo.jp/a/%E3%83%8B%E3%82%B3%E3%83%8B%E3%82%B3%E5%8B%95%E7%94%BBapi
-     */
-    public function list(string $videoId): Result
+    public function series(int $seriesId): Result
     {
         $url = sprintf(
-            '%s?video=%s',
+            '%s/series/%d',
             $this->getEndpoint(),
-            $videoId
+            $seriesId,
         );
         $response = $this->httpClient->request('GET', $url);
         $this->validateResponse($response);

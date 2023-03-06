@@ -31,11 +31,6 @@ class Video extends BaseVideo
         return $this->item['video']['description'];
     }
 
-    public function getUserId(): int
-    {
-        return (int)$this->item['video']['user_id'];
-    }
-
     public function getThumbnailUrl(): string
     {
         return $this->item['video']['thumbnail_url'];
@@ -85,14 +80,29 @@ class Video extends BaseVideo
             : null;
     }
 
+    public function getOwnerType(): ?string
+    {
+        return match ($this->item['video']['option_flag_community']) {
+            '0' => self::OWNER_TYPE_USER,
+            '1' => self::OWNER_TYPE_CHANNEL,
+            default => self::OWNER_TYPE_UNKNOWN
+        };
+    }
+
+    public function getOwnerId(): ?int
+    {
+        return match ($this->getOwnerType()) {
+            self::OWNER_TYPE_USER => (int)$this->item['video']['user_id'],
+            self::OWNER_TYPE_CHANNEL => Functions::getChannelId($this->item['video']['community_id']),
+            default => null,
+        };
+    }
+
+    // extra fields
+
     public function getDeleted(): bool
     {
         return (bool)$this->item['video']['deleted'];
-    }
-
-    public function getCommunityId(): string
-    {
-        return $this->item['video']['community_id'];
     }
 
     public function getMylistItemId(): ?int

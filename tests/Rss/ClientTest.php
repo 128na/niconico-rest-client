@@ -17,7 +17,7 @@ use Symfony\Contracts\HttpClient\ResponseInterface;
 
 class ClientTest extends TestCase
 {
-    public const MOCK_XML = '<?xml version="1.0" encoding="utf-8"?>
+    private const MOCK_XML = '<?xml version="1.0" encoding="utf-8"?>
     <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ja" xmlns:media="http://search.yahoo.com/mrss/">
       <title>dummy rss title</title>
       <subtitle>dummy rss subtitle</subtitle>

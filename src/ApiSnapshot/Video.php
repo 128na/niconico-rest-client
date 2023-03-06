@@ -33,11 +33,6 @@ class Video extends BaseVideo
         return $this->item['description'] ?? null;
     }
 
-    public function getUserId(): ?int
-    {
-        return $this->item['userId'] ?? null;
-    }
-
     public function getThumbnailUrl(): ?string
     {
         return $this->item['thumbnailUrl'] ?? null;
@@ -106,10 +101,21 @@ class Video extends BaseVideo
         return $this->item['genre'] ?? null;
     }
 
-    public function getChannelId(): ?int
+    public function getOwnerType(): ?string
     {
-        return isset($this->item['channelId'])
-            ? (int)$this->item['channelId']
-            : null;
+        return match (true) {
+            $this->item['userId'] !== null => self::OWNER_TYPE_USER,
+            $this->item['channelId'] !== null => self::OWNER_TYPE_CHANNEL,
+            default => self::OWNER_TYPE_UNKNOWN,
+        };
+    }
+
+    public function getOwnerId(): ?int
+    {
+        return match ($this->getOwnerType()) {
+            self::OWNER_TYPE_USER => $this->item['userId'],
+            self::OWNER_TYPE_CHANNEL => $this->item['channelId'],
+            default => null,
+        };
     }
 }

@@ -18,11 +18,13 @@ https://dic.nicovideo.jp/a/%E3%83%8B%E3%82%B3%E3%83%8B%E3%82%B3%E5%8B%95%E7%94%B
 
 https://w.atwiki.jp/nicoapi/
 
+非公開だけど廃止時にアナウンスされる（やさしい
+
+https://www.google.com/search?q=api+site%3Ahttps%3A%2F%2Fblog.nicovideo.jp%2Fniconews
+
 
 - ExtApi(getthumbinfo)
     - `https://ext.nicovideo.jp/api/getthumbinfo/***`
-- FlApi(getrelation)
-    - `https://flapi.nicovideo.jp/api/getrelation?video=***`
 - CeApi
     - `https://api.ce.nicovideo.jp/api/v1/user.info?__format=json&user_id=2`
     - `https://api.ce.nicovideo.jp/nicoapi/v1/video.info?__format=json&v=***`
@@ -33,11 +35,17 @@ https://w.atwiki.jp/nicoapi/
 
 ※group_id=mylist_id
 
-### RSS feeds
+### その他
+
+APIではないがデータ取得可能なもの
 
 - Rss
     - `https://www.nicovideo.jp/user/***/video?rss=atom`
     - `https://www.nicovideo.jp/user/***/mylist/***?rss=atom`
+- Web
+    - `https://sp.nicovideo.jp/series/***`
+    - `https://sp.nicovideo.jp/watch/***`
+
 
 
 ## usage

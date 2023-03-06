@@ -9,6 +9,10 @@ use NicoNicoRestClient\Contracts\Video as ContractsVideo;
 
 abstract class Video implements ContractsVideo
 {
+    public const OWNER_TYPE_USER = 'user';
+    public const OWNER_TYPE_CHANNEL = 'channel';
+    public const OWNER_TYPE_UNKNOWN = null;
+
     /**
      * @param array<mixed> $item
      */
@@ -37,11 +41,6 @@ abstract class Video implements ContractsVideo
     }
 
     public function getDescription(): ?string
-    {
-        return null;
-    }
-
-    public function getUserId(): ?int
     {
         return null;
     }
@@ -106,7 +105,22 @@ abstract class Video implements ContractsVideo
         return null;
     }
 
-    public function getChannelId(): ?int
+    public function getOwnerType(): ?string
+    {
+        return null;
+    }
+
+    public function getOwnerId(): ?int
+    {
+        return null;
+    }
+
+    public function getOwnerName(): ?string
+    {
+        return null;
+    }
+
+    public function getOwnerIconUrl(): ?string
     {
         return null;
     }

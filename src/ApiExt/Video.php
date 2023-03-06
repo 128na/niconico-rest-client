@@ -31,39 +31,9 @@ class Video extends BaseVideo
         return $this->item['thumb']['description'];
     }
 
-    public function getUserId(): int
-    {
-        return (int)$this->item['thumb']['user_id'];
-    }
-
-    public function getUserNickname(): string
-    {
-        return $this->item['thumb']['user_nickname'];
-    }
-
-    public function getUserIconUrl(): string
-    {
-        return $this->item['thumb']['user_icon_url'];
-    }
-
     public function getThumbnailUrl(): string
     {
         return $this->item['thumb']['thumbnail_url'];
-    }
-
-    public function getThumbType(): string
-    {
-        return $this->item['thumb']['thumb_type'];
-    }
-
-    public function getEmbeddable(): bool
-    {
-        return (bool)$this->item['thumb']['embeddable'];
-    }
-
-    public function getNoLivePlay(): bool
-    {
-        return (bool)$this->item['thumb']['no_live_play'];
     }
 
     public function getStartTime(): DateTimeImmutable
@@ -79,21 +49,6 @@ class Video extends BaseVideo
     public function getLengthSeconds(): int
     {
         return Functions::timeStringToSeconds($this->getLengthString());
-    }
-
-    public function getMovieType(): string
-    {
-        return $this->item['thumb']['movie_type'];
-    }
-
-    public function getSizeHigh(): int
-    {
-        return (int)$this->item['thumb']['size_high'];
-    }
-
-    public function getSizeLow(): int
-    {
-        return (int)$this->item['thumb']['size_low'];
     }
 
     public function getViewCounter(): int
@@ -124,5 +79,74 @@ class Video extends BaseVideo
     public function getGenre(): string
     {
         return $this->item['thumb']['genre'];
+    }
+
+    // extra fields
+
+
+    public function getThumbType(): string
+    {
+        return $this->item['thumb']['thumb_type'];
+    }
+
+    public function getEmbeddable(): bool
+    {
+        return (bool)$this->item['thumb']['embeddable'];
+    }
+
+    public function getNoLivePlay(): bool
+    {
+        return (bool)$this->item['thumb']['no_live_play'];
+    }
+
+    public function getMovieType(): string
+    {
+        return $this->item['thumb']['movie_type'];
+    }
+
+    public function getSizeHigh(): int
+    {
+        return (int)$this->item['thumb']['size_high'];
+    }
+
+    public function getSizeLow(): int
+    {
+        return (int)$this->item['thumb']['size_low'];
+    }
+
+    public function getOwnerType(): ?string
+    {
+        return match (true) {
+            isset($this->item['thumb']['user_id']) => self::OWNER_TYPE_USER,
+            isset($this->item['thumb']['ch_id']) => self::OWNER_TYPE_CHANNEL,
+            default => self::OWNER_TYPE_UNKNOWN
+        };
+    }
+
+    public function getOwnerId(): ?int
+    {
+        return match ($this->getOwnerType()) {
+            self::OWNER_TYPE_USER => (int)$this->item['thumb']['user_id'],
+            self::OWNER_TYPE_CHANNEL => (int)$this->item['thumb']['ch_id'],
+            default => null,
+        };
+    }
+
+    public function getOwnerName(): ?string
+    {
+        return match ($this->getOwnerType()) {
+            self::OWNER_TYPE_USER => $this->item['thumb']['user_nickname'],
+            self::OWNER_TYPE_CHANNEL => $this->item['thumb']['ch_name'],
+            default => null,
+        };
+    }
+
+    public function getOwnerIconUrl(): ?string
+    {
+        return match ($this->getOwnerType()) {
+            self::OWNER_TYPE_USER => $this->item['thumb']['user_icon_url'],
+            self::OWNER_TYPE_CHANNEL => $this->item['thumb']['ch_icon_url'],
+            default => null,
+        };
     }
 }

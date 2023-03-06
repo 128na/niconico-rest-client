@@ -34,11 +34,6 @@ interface Video
     public function getDescription(): ?string;
 
     /**
-     * ユーザーID
-     */
-    public function getUserId(): ?int;
-
-    /**
      * サムネイルURL
      */
     public function getThumbnailUrl(): ?string;
@@ -102,7 +97,22 @@ interface Video
     public function getGenre(): ?string;
 
     /**
-     * チャンネルID
+     * user or channel
      */
-    public function getChannelId(): ?int;
+    public function getOwnerType(): ?string;
+
+    /**
+     * user id or channel id
+     */
+    public function getOwnerId(): ?int;
+
+    /**
+     * user name or channel name
+     */
+    public function getOwnerName(): ?string;
+
+    /**
+     * user icon url or channel icon url
+     */
+    public function getOwnerIconUrl(): ?string;
 }

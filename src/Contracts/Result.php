@@ -10,11 +10,6 @@ interface Result
 {
     public function getResponse(): ResponseInterface;
 
-    /**
-     * @return array<mixed>
-     */
-    public function getBody(): array;
-
     public function statusOk(): bool;
 
     public function getErrorMessage(): ?string;
