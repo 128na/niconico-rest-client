@@ -17,8 +17,20 @@ class VideoListResult extends JsonResult implements MultipleVideosResult, Result
 
     public function getTotalCount(): ?int
     {
+        return $this->getTotalCountMylist() ?? $this->getTotalCountUser() ?? null;
+    }
+
+    public function getTotalCountMylist(): ?int
+    {
         return isset($this->body['niconico_response']['total_count'])
             ? (int)$this->body['niconico_response']['total_count']
+            : null;
+    }
+
+    public function getTotalCountUser(): ?int
+    {
+        return isset($this->body['niconico_response']['full_count'])
+            ? (int)$this->body['niconico_response']['full_count']
             : null;
     }
 
