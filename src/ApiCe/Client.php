@@ -13,7 +13,7 @@ class Client extends BaseClient
     public function userInfo(int $userId): UserResult
     {
         $url = sprintf(
-            '%s/api/v1/user.info?__format=json&user_id=%s',
+            '%s/api/v1/user.info?__format=json&user_id=%d',
             $this->getEndpoint(),
             $userId
         );
@@ -61,7 +61,7 @@ class Client extends BaseClient
     public function mylistGroup(int $groupId): MylistResult
     {
         $url = sprintf(
-            '%s/nicoapi/v1/mylistgroup.get?__format=json&group_id=%s',
+            '%s/nicoapi/v1/mylistgroup.get?__format=json&group_id=%d&detail=1',
             $this->getEndpoint(),
             $groupId
         );
@@ -72,6 +72,20 @@ class Client extends BaseClient
 
         return $result;
     }
-    // public function mylistList(int $groupId): VideoListResult
+    public function mylistList(int $groupId, int $page = 1): VideoListResult
+    {
+        $url = sprintf(
+            '%s/nicoapi/v1/mylist.list?__format=json&group_id=%d&limit=50&from=%d',
+            $this->getEndpoint(),
+            $groupId,
+            ($page - 1) * 50
+        );
+        $response = $this->httpClient->request('GET', $url);
+        $this->validateResponse($response);
+        $result = new VideoListResult($response);
+        $this->validateResult($result);
+
+        return $result;
+    }
     // public function userMyVideo(int $userId): VideoListResult
 }

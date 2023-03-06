@@ -15,6 +15,13 @@ class VideoListResult extends JsonResult implements MultipleVideosResult, Result
         return array_map(fn ($item) => new Video($item), $this->getBody()['niconico_response']['video_info']);
     }
 
+    public function getTotalCount(): ?int
+    {
+        return isset($this->body['niconico_response']['total_count'])
+            ? (int)$this->body['niconico_response']['total_count']
+            : null;
+    }
+
     public function statusOk(): bool
     {
         return $this->body['niconico_response']['@status'] === 'ok';

@@ -5,10 +5,16 @@ declare(strict_types=1);
 namespace NicoNicoRestClient\ApiCe;
 
 use NicoNicoRestClient\Base\JsonResult;
+use NicoNicoRestClient\Contracts\MultipleVideosResult;
 use NicoNicoRestClient\Contracts\Result;
 
-class MylistResult extends JsonResult implements Result
+class MylistResult extends JsonResult implements MultipleVideosResult, Result
 {
+    public function getVideos(): array
+    {
+        return array_map(fn ($item) => new Video($item), $this->getBody()['niconico_response']['mylistgroup']['video_info']);
+    }
+
     public function getMylist(): Mylist
     {
         return new Mylist($this->getBody()['niconico_response']);

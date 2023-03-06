@@ -94,4 +94,25 @@ class Video extends BaseVideo
     {
         return $this->item['video']['community_id'];
     }
+
+    public function getMylistItemId(): ?int
+    {
+        return isset($this->item['mylist']['item_id'])
+            ? (int)$this->item['mylist']['item_id']
+            : null;
+    }
+
+    public function getMylistDescription(): ?string
+    {
+        return isset($this->item['mylist']['description'])
+            ? $this->item['mylist']['description']
+            : null;
+    }
+
+    public function getMylistCreateTime(): ?DateTimeImmutable
+    {
+        return isset($this->item['mylist']['create_time'])
+            ? DateTimeImmutable::createFromFormat(DateTimeInterface::ATOM, $this->item['mylist']['create_time'])
+            : null;
+    }
 }
