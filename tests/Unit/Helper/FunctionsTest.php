@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\ApiExt;
+namespace Tests\Unit\ApiExt;
 
 use NicoNicoRestClient\Helper\Functions;
 use PHPUnit\Framework\TestCase;

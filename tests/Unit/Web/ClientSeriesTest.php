@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Web;
+namespace Tests\Unit\Web;
 
 use DateTimeImmutable;
 use DateTimeInterface;
@@ -14,11 +14,11 @@ use Mockery\MockInterface;
 use NicoNicoRestClient\Web\Result;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
-use Tests\VideoTestCase;
+use Tests\Unit\VideoTestCase;
 
 class ClientSeriesTest extends VideoTestCase
 {
-    private const MOCK_USER = '<!DOCTYPE HTML>
+  private const MOCK_USER = '<!DOCTYPE HTML>
     <html lang="ja">
     <head>
       <meta charset="utf-8" />
@@ -121,7 +121,7 @@ class ClientSeriesTest extends VideoTestCase
     </body>
     </html>';
 
-    private const MOCK_CHANNEL = '<!DOCTYPE HTML>
+  private const MOCK_CHANNEL = '<!DOCTYPE HTML>
     <html lang="ja">
     <head>
       <meta charset="utf-8" />
@@ -240,69 +240,69 @@ class ClientSeriesTest extends VideoTestCase
     </body>
     </html>';
 
-    protected ?string $expectWatchUrl = 'https://sp.nicovideo.jp/watch/sm0?ref=series';
-    protected ?string $expectDescription = null;
-    protected ?string $expectStartTime = '2000-01-02T00:00:00+09:00';
-    protected ?string $expectLastCommentTime = null;
-    protected ?string $expectLastResBody = null;
-    protected array $expectTags = [];
-    protected ?string $expectGenre = null;
+  protected ?string $expectWatchUrl = 'https://sp.nicovideo.jp/watch/sm0?ref=series';
+  protected ?string $expectDescription = null;
+  protected ?string $expectStartTime = '2000-01-02T00:00:00+09:00';
+  protected ?string $expectLastCommentTime = null;
+  protected ?string $expectLastResBody = null;
+  protected array $expectTags = [];
+  protected ?string $expectGenre = null;
 
-    protected function setUp(): void
-    {
-        parent::setUp();
-    }
+  protected function setUp(): void
+  {
+    parent::setUp();
+  }
 
-    private function getSUT($m): Client
-    {
-        return new Client($m);
-    }
+  private function getSUT($m): Client
+  {
+    return new Client($m);
+  }
 
-    public function testUser()
-    {
-        $m = Mockery::mock(HttpClientInterface::class, function (MockInterface $m) {
-            $m->shouldReceive('request')->withArgs([
-                'GET', 'https://sp.nicovideo.jp/series/1'
-            ])->andReturn(Mockery::mock(ResponseInterface::class, function (MockInterface $m) {
-                $m->allows('getStatusCode')->andReturn(200);
-                $m->allows('getContent')->andReturn(self::MOCK_USER);
-            }));
-        });
+  public function testUser()
+  {
+    $m = Mockery::mock(HttpClientInterface::class, function (MockInterface $m) {
+      $m->shouldReceive('request')->withArgs([
+        'GET', 'https://sp.nicovideo.jp/series/1'
+      ])->andReturn(Mockery::mock(ResponseInterface::class, function (MockInterface $m) {
+        $m->allows('getStatusCode')->andReturn(200);
+        $m->allows('getContent')->andReturn(self::MOCK_USER);
+      }));
+    });
 
-        $result = $this->getSUT($m)->series(1);
+    $result = $this->getSUT($m)->series(1);
 
-        $this->assertEquals(200, $result->getResponse()->getStatusCode());
+    $this->assertEquals(200, $result->getResponse()->getStatusCode());
 
-        /** @var Video */
-        $video = $result->getVideos()[0];
-        $this->assertInstanceOf(Video::class, $video);
+    /** @var Video */
+    $video = $result->getVideos()[0];
+    $this->assertInstanceOf(Video::class, $video);
 
-        $this->assertCommonFields($video);
-        $this->assertUserFields($video);
-        $this->assertEquals('https://sp.nicovideo.jp/user/500', $video->getOwnerUrl());
-    }
+    $this->assertCommonFields($video);
+    $this->assertUserFields($video);
+    $this->assertEquals('https://sp.nicovideo.jp/user/500', $video->getOwnerUrl());
+  }
 
-    public function testChannel()
-    {
-        $m = Mockery::mock(HttpClientInterface::class, function (MockInterface $m) {
-            $m->shouldReceive('request')->withArgs([
-                'GET', 'https://sp.nicovideo.jp/series/1'
-            ])->andReturn(Mockery::mock(ResponseInterface::class, function (MockInterface $m) {
-                $m->allows('getStatusCode')->andReturn(200);
-                $m->allows('getContent')->andReturn(self::MOCK_CHANNEL);
-            }));
-        });
+  public function testChannel()
+  {
+    $m = Mockery::mock(HttpClientInterface::class, function (MockInterface $m) {
+      $m->shouldReceive('request')->withArgs([
+        'GET', 'https://sp.nicovideo.jp/series/1'
+      ])->andReturn(Mockery::mock(ResponseInterface::class, function (MockInterface $m) {
+        $m->allows('getStatusCode')->andReturn(200);
+        $m->allows('getContent')->andReturn(self::MOCK_CHANNEL);
+      }));
+    });
 
-        $result = $this->getSUT($m)->series(1);
+    $result = $this->getSUT($m)->series(1);
 
-        $this->assertEquals(200, $result->getResponse()->getStatusCode());
+    $this->assertEquals(200, $result->getResponse()->getStatusCode());
 
-        /** @var Video */
-        $video = $result->getVideos()[0];
-        $this->assertInstanceOf(Video::class, $video);
+    /** @var Video */
+    $video = $result->getVideos()[0];
+    $this->assertInstanceOf(Video::class, $video);
 
-        $this->assertCommonFields($video);
-        $this->assertChannelFields($video);
-        $this->assertEquals('https://sp.ch.nicovideo.jp/info/ch600', $video->getOwnerUrl());
-    }
+    $this->assertCommonFields($video);
+    $this->assertChannelFields($video);
+    $this->assertEquals('https://sp.ch.nicovideo.jp/info/ch600', $video->getOwnerUrl());
+  }
 }

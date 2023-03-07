@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Rss;
+namespace Tests\Unit\Rss;
 
 use NicoNicoRestClient\Rss\Client;
 use NicoNicoRestClient\Rss\Video;
@@ -10,7 +10,7 @@ use Mockery;
 use Mockery\MockInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
-use Tests\VideoTestCase;
+use Tests\Unit\VideoTestCase;
 
 class ClientTest extends VideoTestCase
 {

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\ApiSnapshot;
+namespace Tests\Unit\ApiSnapshot;
 
 use DateTimeImmutable;
 use DateTimeInterface;
@@ -13,7 +13,7 @@ use NicoNicoRestClient\ApiSnapshot\Query;
 use NicoNicoRestClient\ApiSnapshot\Video;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
-use Tests\VideoTestCase;
+use Tests\Unit\VideoTestCase;
 
 class ClientListTest extends VideoTestCase
 {

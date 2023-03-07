@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\ApiCe;
+namespace Tests\Unit\ApiCe;
 
 use Mockery;
 use Mockery\MockInterface;
@@ -12,7 +12,7 @@ use NicoNicoRestClient\ApiCe\User;
 use NicoNicoRestClient\ApiCe\Video;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
-use Tests\VideoTestCase;
+use Tests\Unit\VideoTestCase;
 
 class ClientMylistGroupTest extends VideoTestCase
 {

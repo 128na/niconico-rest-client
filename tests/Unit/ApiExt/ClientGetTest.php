@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\ApiExt;
+namespace Tests\Unit\ApiExt;
 
 use Mockery;
 use Mockery\MockInterface;
@@ -10,7 +10,7 @@ use NicoNicoRestClient\ApiExt\Client;
 use NicoNicoRestClient\ApiExt\Video;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
-use Tests\VideoTestCase;
+use Tests\Unit\VideoTestCase;
 
 class ClientGetTest extends VideoTestCase
 {
