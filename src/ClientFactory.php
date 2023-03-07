@@ -20,7 +20,7 @@ class ClientFactory
     public const API_EXT = ApiExtClient::class;
     public const API_CE = ApiCeClient::class;
     public const RSS = RssClient::class;
-    public const WEB = WevClient::class;
+    public const WEB = WebClient::class;
 
     public static function create(string $clientName, ?HttpClientInterface $httpClient = null): Client
     {
