@@ -1,5 +1,6 @@
 {
   "name": "128na/niconico-rest-client",
+  "description": "niconico rest client",
   "type": "library",
   "require": {
     "symfony/http-client": "^6.2.7",
