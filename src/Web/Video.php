@@ -6,57 +6,45 @@ namespace NicoNicoRestClient\Web;
 
 use DateTimeImmutable;
 use DateTimeInterface;
-use DOMElement;
-use DOMNode;
-use DOMXPath;
 use NicoNicoRestClient\Base\Video as BaseVideo;
 use NicoNicoRestClient\Helper\Functions;
+use Symfony\Component\DomCrawler\Crawler;
 
 class Video extends BaseVideo
 {
-    protected DOMXPath $xpath;
-
-    public function __construct(protected DOMNode $node)
+    public function __construct(protected Crawler $node)
     {
-        $this->xpath = new DOMXPath($this->node);
-        parent::__construct(Functions::elementToArray($this->node));
+        parent::__construct([]);
     }
 
-    public function getContentId(): string
+    public function getContentId(): ?string
     {
-        return $this->item['data-watch_id'];
+        return $this->node->attr('data-watch_id');
     }
 
-    public function getWatchUrl(): string
+    public function getWatchUrl(): ?string
     {
-        return $this->item['data-video_url'];
+        return $this->node->attr('data-video_url');
     }
 
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
-        return $this->item['data-title'];
-    }
-
-    public function getUserId(): ?int
-    {
-        if ($this->item['data-owner_type'] === 'user') {
-            return (int)$this->item['data-owner_id'];
-        }
-        return null;
+        return $this->node->attr('data-title');
     }
 
     public function getThumbnailUrl(): ?string
     {
-        $node = $this->xpath->query('//*[@class="video-item-thumbnail"]')->item(0);
-
-        return $node->textContent ?? null;
+        $node = $this->node->filterXPath('//img');
+        return $node->count() ? $node->attr('data-original') : null;
     }
 
     public function getStartTime(): ?DateTimeImmutable
     {
-        $node = $this->xpath->query('//*[@class="video-item-date"]')->item(0);
-        if ($node && $node->textContent) {
-            return DateTimeImmutable::createFromFormat('Y-m-d', $node->textContent);
+        $node = $this->node->filterXPath('//*[@class="video-item-date"]')->first();
+
+        if ($node->count() && $node->text()) {
+            $date = str_replace('/', '-', $node->text());
+            return DateTimeImmutable::createFromFormat(DateTimeInterface::ATOM, sprintf('%sT00:00:00+09:00', $date));
         }
         return null;
     }
@@ -68,81 +56,60 @@ class Video extends BaseVideo
 
     public function getLengthSeconds(): int
     {
-        return (int)$this->item['data-video_length'];
+        return (int)$this->node->attr('data-video_length');
     }
 
     public function getViewCounter(): int
     {
-        return (int)$this->item['data-view_counter'];
+        return (int)$this->node->attr('data-view_counter');
     }
 
     public function getCommentCounter(): int
     {
-        return (int)$this->item['data-comment_counter'];
+        return (int)$this->node->attr('data-comment_counter');
     }
 
     public function getMylistCounter(): int
     {
-        return (int)$this->item['data-mylist_counter'];
+        return (int)$this->node->attr('data-mylist_counter');
     }
 
     public function getLikeCounter(): int
     {
-        return (int)$this->item['data-like_counter'];
+        return (int)$this->node->attr('data-like_counter');
     }
 
-    /**
-     * チャンネル動画のみ、ユーザー投稿動画はnull
-     */
-    public function getChannelId(): ?int
+    public function getOwnerType(): ?string
     {
-        if ($this->item['data-owner_type'] === 'channel') {
-            return (int)str_replace('ch', '', $this->item['data-owner_id']);
-        }
-        return null;
+        return match ($this->node->attr('data-owner_type')) {
+            'user' => self::OWNER_TYPE_USER,
+            'channel' => self::OWNER_TYPE_CHANNEL,
+            default => self::OWNER_TYPE_UNKNOWN,
+        };
+    }
+
+    public function getOwnerId(): ?int
+    {
+        return match ($this->getOwnerType()) {
+            self::OWNER_TYPE_USER => (int)$this->node->attr('data-owner_id'),
+            self::OWNER_TYPE_CHANNEL => Functions::getChannelId($this->node->attr('data-owner_id')),
+            default => null,
+        };
+    }
+
+    public function getOwnerName(): ?string
+    {
+        return $this->node->attr('data-owner_name');
+    }
+
+    public function getOwnerIconUrl(): ?string
+    {
+        return $this->node->attr('data-owner_icon_url');
     }
 
     // extra fields
-    /**
-     * ユーザー投稿動画のみ、チャンネル動画はnull
-     */
-    public function getUserNickname(): ?string
+    public function getOwnerUrl(): ?string
     {
-        if ($this->item['data-owner_type'] === 'user') {
-            return $this->item['data-owner_name'];
-        }
-        return null;
-    }
-
-    /**
-     * ユーザー投稿動画のみ、チャンネル動画はnull
-     */
-    public function getUserIconUrl(): ?string
-    {
-        if ($this->item['data-owner_type'] === 'user') {
-            return $this->item['data-owner_icon_url'];
-        }
-        return null;
-    }
-    /**
-     * チャンネル動画のみ、ユーザー投稿動画はnull
-     */
-    public function getChannelName(): ?string
-    {
-        if ($this->item['data-owner_type'] === 'channel') {
-            return $this->item['data-owner_name'];
-        }
-        return null;
-    }
-
-    /**
-     * チャンネル動画のみ、ユーザー投稿動画はnull
-     */
-    public function getChannelIconUrl(): ?string
-    {
-        if ($this->item['data-owner_type'] === 'channel') {
-            return $this->item['data-owner_icon_url'];
-        }
-        return null;
+        return $this->node->attr('data-owner_url');
     }
 }

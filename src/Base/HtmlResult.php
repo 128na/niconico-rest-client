@@ -4,31 +4,20 @@ declare(strict_types=1);
 
 namespace NicoNicoRestClient\Base;
 
-use DOMDocument;
-use DOMXPath;
-use NicoNicoRestClient\Helper\Functions;
 use Symfony\Contracts\HttpClient\ResponseInterface;
+use Symfony\Component\DomCrawler\Crawler;
 
 abstract class HtmlResult extends Result
 {
-    protected DOMDocument $dom;
-    protected DOMXPath $xpath;
+    protected Crawler $crawler;
 
     public function __construct(protected ResponseInterface $response)
     {
-        $this->dom = new DOMDocument();
-        $this->dom->loadHTML($this->response->getContent());
-        $this->xpath = new DOMXPath($this->dom);
-        $this->body = Functions::elementToArray($this->dom->documentElement);
+        $this->crawler = new Crawler($this->response->getContent());
     }
 
-    public function getDom(): DOMDocument
+    public function getCrawler(): Crawler
     {
-        return $this->dom;
-    }
-
-    public function getXpath(): DOMXPath
-    {
-        return $this->xpath;
+        return $this->crawler;
     }
 }

@@ -7,22 +7,15 @@ namespace NicoNicoRestClient\Web;
 use NicoNicoRestClient\Base\HtmlResult;
 use NicoNicoRestClient\Contracts\MultipleVideosResult;
 use NicoNicoRestClient\Contracts\Result as ContractsResult;
-use DOMNodeList;
-use DOMNode;
-use NicoNicoRestClient\Helper\Functions;
+use Symfony\Component\DomCrawler\Crawler;
 
 class Result extends HtmlResult implements MultipleVideosResult, ContractsResult
 {
     public function getVideos(): array
     {
-        /** @var DOMNodeList  */
-        $items = $this->getXpath()->query('//*[@id="jsVideoList"]/ul/li');
-        $videos = [];
-        /** @var DOMNode $item */
-        foreach ($items as $item) {
-            $videos[] = new Video($item);
-        }
-        return $videos;
+        return $this->getCrawler()
+            ->filterXPath('//*[@id="jsVideoList"]/ul/li')
+            ->each(fn (Crawler $node) => new Video($node));
     }
 
     public function statusOk(): bool
