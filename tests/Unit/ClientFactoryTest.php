@@ -10,6 +10,7 @@ use NicoNicoRestClient\ApiExt\Client as ApiExtClient;
 use NicoNicoRestClient\ApiSnapshot\Client as ApiSnapshotClient;
 use NicoNicoRestClient\ClientFactory;
 use NicoNicoRestClient\Rss\Client as RssClient;
+use NicoNicoRestClient\Web\Client as WebClient;
 
 class ClientFactoryTest extends TestCase
 {
@@ -29,6 +30,7 @@ class ClientFactoryTest extends TestCase
             [ClientFactory::API_EXT, ApiExtClient::class],
             [ClientFactory::API_SNAPSHOT, ApiSnapshotClient::class],
             [ClientFactory::RSS, RssClient::class],
+            [ClientFactory::WEB, WebClient::class],
         ];
     }
 }
