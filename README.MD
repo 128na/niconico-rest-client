@@ -6,7 +6,7 @@
 ## install
 
 ```
-composer install 128na/niconico-rest-client
+composer require 128na/niconico-rest-client
 ```
 
 ## Usage
