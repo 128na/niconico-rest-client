@@ -8,29 +8,22 @@ use PHPUnit\Framework\TestCase;
 use NicoNicoRestClient\ApiCe\Client as ApiCeClient;
 use NicoNicoRestClient\ApiExt\Client as ApiExtClient;
 use NicoNicoRestClient\ApiSnapshot\Client as ApiSnapshotClient;
+use NicoNicoRestClient\Client;
 use NicoNicoRestClient\ClientFactory;
 use NicoNicoRestClient\Rss\Client as RssClient;
 use NicoNicoRestClient\Web\Client as WebClient;
 
 class ClientFactoryTest extends TestCase
 {
-    /**
-     * @dataProvider dataProvider
-     */
-    public function test(string $clientName, string $expectClass)
+    public function test()
     {
-        $actual = ClientFactory::create($clientName);
-        $this->assertInstanceOf($expectClass, $actual);
-    }
+        $actual = ClientFactory::create();
+        $this->assertInstanceOf(Client::class, $actual);
 
-    public static function dataProvider()
-    {
-        return [
-            [ClientFactory::API_CE, ApiCeClient::class],
-            [ClientFactory::API_EXT, ApiExtClient::class],
-            [ClientFactory::API_SNAPSHOT, ApiSnapshotClient::class],
-            [ClientFactory::RSS, RssClient::class],
-            [ClientFactory::WEB, WebClient::class],
-        ];
+        $this->assertInstanceOf(ApiCeClient::class, $actual->getApiCeClient());
+        $this->assertInstanceOf(ApiExtClient::class, $actual->getApiExtClient());
+        $this->assertInstanceOf(ApiSnapshotClient::class, $actual->getApiSnapshotClient());
+        $this->assertInstanceOf(RssClient::class, $actual->getRssClient());
+        $this->assertInstanceOf(WebClient::class, $actual->getWebClient());
     }
 }

@@ -1,0 +1,35 @@
+﻿,項目名,Method,Snapshot,Ext,Rss,Ce,Ce,Web,説明
+,APIs,,list,get,"userMylist, mylist, user",videoInfo,"videoArray, mylistGroup, mylistList, userMyVideo",series,
+,動画ID,getContentId,contentId,video_id,〇,video.id,video.id,[data-watch_id],
+,再生ページURL,getWatchUrl,〇,watch_url,link.@attributes.href,〇,〇,[data-video_url],
+,動画タイトル,getTitle,title,title,title,title,title,[data-title],
+,動画説明文,getDescription,description,description,〇,description,description,×,
+,サムネイルURL,getThumbnailUrl,thumbnailUrl,thumbnail_url,media_thumbnail.@attributes.url,video.thumbnail_url,video.thumbnail_url,[data-original],
+,投稿日時,getStartTime,startTime,first_retrieve,published,video.first_retrieve,video.first_retrieve,.video-item-date (時刻無し、日付のみ),
+,再生時間（h:i:s）,getLengthString,〇,length,×,〇,〇,〇,60分未満はi:s
+,再生時間（秒）,getLengthSeconds,lengthSeconds,〇,×,video.length_in_seconds,video.length_in_seconds,[data-video_length],
+,再生数,getViewCounter,viewCounter,view_counter,×,video.view_counter,video.view_counter,[data-view_counter],
+,コメント数,getCommentCounter,commentCounter,comment_num,×,video.length_in_seconds,video.length_in_seconds,[data-comment_counter],
+,マイリスト数,getMylistCounter,mylistCounter,mylist_counter,×,video.mylist_counter,video.mylist_counter,[data-mylist_counter],
+,いいね数,getLikeCounter,likeCounter,×,×,×,×,[data-like_counter],
+,最後のコメント日時,getLastCommentTime,lastCommentTime,×,×,×,×,×,
+,最後のコメント本文,getLastResBody,lastResBody,last_res_body,×,×,×,×,
+,タグ一覧,getTags,tags,tags.tag,×,tags.tag_info.tag,×,×,
+,ジャンル名,getGenre,genre,genre,×,video.genre.label,video.genre.label,×,
+,オーナータイプ,getOwnerType,〇,〇,×,video.option_flag_community,video.option_flag_community,[data-owner_type],user or channel
+,オーナーID,getOwnerId,"userId, channelId","user_id, ch_id",×,"video.user_id, video.community_id","video.user_id, video.community_id",[data-owner_id],
+特定APIのみ,,,,,,,,,
+,オーナー名,getOwnerName,×,"user_nickname, ch_name",×,×,×,[data-owner_name],
+,オーナーアイコンURL,getOwnerIconUrl,×,"user_icon_url, ch_icon_url",×,×,×,[data-owner_icon_url],
+,オーナー詳細URL,getOwnerUrl,×,×,×,×,×,[data-owner_url],
+,サムネイル形式,getThumbType,×,thumb_type,×,×,×,×,
+,埋め込み可,getEmbeddable,×,embeddable,×,×,×,×,
+,再生にログイン必須,getNoLivePlay,×,no_live_play,×,×,×,×,
+,動画形式,getMovieType,×,movie_type,×,×,×,×,"flv,mp4など"
+,高画質容量,getSizeHigh,×,size_high,×,×,×,×,bytes
+,低画質容量,getSizeLow,×,size_low,×,×,×,×,bytes
+,動画説明文(HTML),getDescriptionHTML,×,×,content,×,×,×,
+,削除フラグ,getDeleted,×,×,×,video.deleted,video.deleted,×,
+,マイリストアイテムID,getMylistItemId,×,×,×,×,mylist.item_id,×,mylistListのみ
+,マイリストアイテムの説明,getMylistDescription,×,×,×,×,mylist.description,×,mylistListのみ
+,マイリストアイテム登録日時,getMylistCreateTime,×,×,×,×,mylist.create_time,×,mylistListのみ
