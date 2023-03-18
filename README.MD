@@ -15,10 +15,10 @@ composer require 128na/niconico-rest-client
 use NicoNicoRestClient\ClientFactory;
 use NicoNicoRestClient\ApiSnapshot\Query;
 
-$client = ClientFactory::create(ClientFactory::API_SNAPSHOT);
+$client = ClientFactory::create();
 
 $query = new Query(['q'=> 'test']);
-$result = $client->list($query);
+$result = $client->apiSnapshotSearch($query);
 echo $result->statusOk() ? 'ok' : 'fail';
 
 $videos = $result->getVideos();
@@ -43,7 +43,7 @@ $store = new Store('/path/to/cache/storage/');
 $httpClient = HttpClient::create();
 $cachingHttpClient = new CachingHttpClient($httpClient, $store);
 
-$client = ClientFactory::create(ClientFactory::API_SNAPSHOT, $cachingHttpClient);
+$client = ClientFactory::create($cachingHttpClient);
 ```
 
 # Supported APIs
@@ -61,14 +61,12 @@ https://api.search.nicovideo.jp/api/v2/snapshot/video/contents/search
 ```
 
 ```
-$client = ClientFactory::create(ClientFactory::API_SNAPSHOT);
-
 // クエリパラメーターを直接指定可能
 $query = new Query(['q'=> 'test']);
 // setメソッドでの設定も可能
 $quert->setLimit(10);
 
-$result = $client->list($query);
+$result = $client->apiSnapshotSearch($query);
 echo $result->statusOk() ? 'ok' : 'fail';
 
 $videos = $result->getVideos();
@@ -98,14 +96,7 @@ https://ext.nicovideo.jp/api/getthumbinfo/***
 ```
 
 ```
-$client = ClientFactory::create(ClientFactory::API_EXT);
-
-$result = $client->get('sm0');
-echo $result->statusOk() ? 'ok' : 'fail';
-
-$video = $result->getVideo();
-
-echo $video->getTitle() . PHP_EOL;
+$videoResult = $client->apiExtGet('sm0');
 ```
 
 
@@ -123,13 +114,11 @@ https://api.ce.nicovideo.jp/nicoapi/v1/user.myvideo?__format=json&user_id=***
 ※group_id=mylist_id
 
 ```
-$client = ClientFactory::create(ClientFactory::API_CE);
-
-$videoResult = $client->videoInfo('sm0');
-$videosResult = $client->videoArray(['sm0', 'sm1']);
-$mylistResult = $client->mylistGroup($mylistId);
-$videosResult = $client->mylistList($mylistId, $page);
 $userResult = $client->userInfo($userId);
+$videoResult = $client->apiCeVideoInfo('sm0');
+$videosResult = $client->apiCeVideoArray(['sm0', 'sm1']);
+$mylistResult = $client->apiCeMylistGroup($mylistId);
+$videosResult = $client->apiCeMylistList($mylistId, $page);
 $videosResult = $client->userMyVideo($userId, $page);
 ```
 
@@ -146,11 +135,9 @@ https://www.nicovideo.jp/user/***/mylist/***?rss=atom
 ```
 
 ```
-$client = ClientFactory::create(ClientFactory::RSS);
-
-$videosResult = $client->user($userId, $page);
-$videosResult = $client->userMylist($userId, $mylistId, $page);
-$videosResult = $client->mylist($mylistId, $page);
+$videosResult = $client->rssUser($userId, $page);
+$videosResult = $client->rssUserMylist($userId, $mylistId, $page);
+$videosResult = $client->rssMylist($mylistId, $page);
 ```
 
 - Web
@@ -162,9 +149,7 @@ https://sp.nicovideo.jp/series/***
 ```
 
 ```
-$client = ClientFactory::create(ClientFactory::WEB);
-
-$videosResult = $client->series($seriesId);
+$videosResult = $client->webSeries($seriesId);
 ```
 
 ### Video fields

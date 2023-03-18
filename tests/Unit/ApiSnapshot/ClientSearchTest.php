@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Tests\Unit\ApiSnapshot;
 
-use DateTimeImmutable;
-use DateTimeInterface;
 use Mockery;
 use Mockery\MockInterface;
 use NicoNicoRestClient\ApiSnapshot\Client;
@@ -15,7 +13,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 use Symfony\Contracts\HttpClient\ResponseInterface;
 use Tests\Unit\VideoTestCase;
 
-class ClientListTest extends VideoTestCase
+class ClientSearchTest extends VideoTestCase
 {
     private const MOCK_USER = [
         'data' => [
@@ -94,7 +92,7 @@ class ClientListTest extends VideoTestCase
         });
 
         $q = new Query(['q' => 'test']);
-        $result = $this->getSUT($m)->list($q);
+        $result = $this->getSUT($m)->search($q);
         $this->assertEquals(200, $result->getResponse()->getStatusCode());
 
         $video = $result->getVideos()[0];
@@ -116,7 +114,7 @@ class ClientListTest extends VideoTestCase
         });
 
         $q = new Query(['q' => 'test']);
-        $result = $this->getSUT($m)->list($q);
+        $result = $this->getSUT($m)->search($q);
         $this->assertEquals(200, $result->getResponse()->getStatusCode());
 
         $video = $result->getVideos()[0];

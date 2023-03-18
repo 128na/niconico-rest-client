@@ -14,7 +14,7 @@ class Client extends BaseClient
     /**
      * @link https://site.nicovideo.jp/search-api-docs/snapshot.html
      */
-    public function list(Query $query): Result
+    public function search(Query $query): Result
     {
         $url = sprintf(
             '%s?%s',
