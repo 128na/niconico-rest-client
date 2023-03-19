@@ -46,7 +46,7 @@ class Client extends BaseClient
     public function videoArray(array $videoIds): VideoListResult
     {
         $url = sprintf(
-            '%s/nicoapi/v1/video.info?__format=json&v=%s',
+            '%s/nicoapi/v1/video.array?__format=json&v=%s',
             $this->getEndpoint(),
             implode(',', $videoIds)
         );

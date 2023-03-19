@@ -72,7 +72,7 @@ class ClientVideoArrayTest extends VideoTestCase
     {
         $m = Mockery::mock(HttpClientInterface::class, function (MockInterface $m) {
             $m->shouldReceive('request')->withArgs([
-                'GET', 'https://api.ce.nicovideo.jp/nicoapi/v1/video.info?__format=json&v=sm0,sm1'
+                'GET', 'https://api.ce.nicovideo.jp/nicoapi/v1/video.array?__format=json&v=sm0,sm1'
             ])->andReturn(Mockery::mock(ResponseInterface::class, function (MockInterface $m) {
                 $m->allows('getStatusCode')->andReturn(200);
                 $m->allows('toArray')->andReturn(self::MOCK);
