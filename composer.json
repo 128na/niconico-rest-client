@@ -4,7 +4,7 @@
   "type": "library",
   "require": {
     "symfony/http-client": "^6.2.7",
-    "symfony/dom-crawler": "^6.2.7",
+    "symfony/dom-crawler": "^6.2.7 || ^7.0.0",
     "symfony/css-selector": "^6.2.7"
   },
   "require-dev": {
